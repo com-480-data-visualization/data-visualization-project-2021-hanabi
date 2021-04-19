@@ -53,6 +53,9 @@ This visualization will benefit anyone who wants to have a quick glimpse on glob
 >
 > - Show some basic statistics and get insights about the data
 
+In this dataset, we first did some data preprocessing. We removed NaN in the dataset and split the dataset into two csv files: one with the exact value(index) and one with rankings. 
+Then, we did some simple statistics on our data which is available in this [Jupyter Notebook](https://github.com/com-480-data-visualization/data-visualization-project-2021-hanabi/blob/master/notebooks/EDA.ipynb).
+
 ### Related work
 
 
