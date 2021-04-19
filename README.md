@@ -2,9 +2,9 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-| Po-Jui Chang | 321337 |
-| | |
-| | |
+| Po-Jui Chang| 321337|
+| Yi-Hsin Jen| 321468|
+| Sabrina Laneve| 331185|
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
