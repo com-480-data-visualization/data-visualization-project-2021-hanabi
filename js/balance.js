@@ -47,46 +47,123 @@ var catapult = Body.create({
 });
 
 // chain
-var count = 0;
-var ropeA = Composites.stack(650, 110, 6, 1, 10, 10, function(x, y) {
-    count++
-    return Bodies.circle(x, y, 20, { collisionFilter: { group: group }, render: {
-        fillStyle: "rgb(" + String(count*20) + "," + String(count*20) +", 255)",
-    } });
+var ropeA = Composites.stack(650, 110, 8, 1, 10, 10, function(x, y) {
+    return Bodies.rectangle(x - 20, y, 50, 20, { collisionFilter: { group: group }, chamfer: 5 });
 });
 
-Composites.chain(ropeA, 0.5, 0, -0.5, 0, { stiffness: 0.8, length: 2, render: { type: 'line', strokeStyle: 'blue' } });
+Composites.chain(ropeA, 0.3, 0, -0.3, 0, { stiffness: 1, length: 0 });
 Composite.add(ropeA, Constraint.create({ 
     bodyB: ropeA.bodies[0],
     bodyA: catapult,
     pointB: { x: -10, y: 0 },
     pointA: { x: 250, y: 0 },
     stiffness: 0.5,
-    render: {type: 'line', strokeStyle: 'blue'}
 }));
 
-count = 0;
-var ropeB = Composites.stack(150, 110, 6, 1, 10, 10, function(x, y) {
-    count++
-    return Bodies.circle(x, y, 20, { collisionFilter: { group: group }, render: {
-        fillStyle: "rgb(255," + String(count*20) + "," + String(count*20) +")",
-    } });
+var ropeC = Composites.stack(650, 110, 8, 1, 10, 10, function(x, y) {
+    return Bodies.rectangle(x - 20, y, 50, 20, { collisionFilter: { group: group }, chamfer: 5 });
 });
 
-Composites.chain(ropeB, 0.5, 0, -0.5, 0, { stiffness: 0.8, length: 2, render: { type: 'line', strokeStyle: 'red'} });
+Composites.chain(ropeC, 0.3, 0, -0.3, 0, { stiffness: 1, length: 0 });
+Composite.add(ropeC, Constraint.create({ 
+    bodyB: ropeC.bodies[0],
+    bodyA: catapult,
+    pointB: { x: -10, y: 0 },
+    pointA: { x: 250, y: 0 },
+    stiffness: 0.5,
+}));
+
+var partA = Bodies.rectangle(700, 110, 200, 20, { collisionFilter: { group: group }, render: { fillStyle: 'grey'},
+density: 0.05 }),
+    partB = Bodies.circle(800, 110, 10, { collisionFilter: { group: group }, render: { fillStyle: 'grey'} }),
+    partC = Bodies.circle(600, 110, 10, { collisionFilter: { group: group }, render: { fillStyle: 'grey'} });
+
+var plateA = Body.create({
+        parts: [partA, partB, partC],
+        collisionFilter: { group: group }
+});
+
+Composite.add(ropeC, Constraint.create({ 
+    bodyB: ropeC.bodies[7],
+    bodyA: plateA,
+    pointB: { x: 10, y: 0 },
+    pointA: { x: -100, y: 0 },
+    length: 0,
+    stiffness: 0.5,
+}));
+
+Composite.add(ropeA, Constraint.create({ 
+    bodyB: ropeA.bodies[7],
+    bodyA: plateA,
+    pointB: { x: 10, y: 0 },
+    pointA: { x: 100, y: 0 },
+    length: 0,
+    stiffness: 0.5,
+}));
+
+
+var ropeB = Composites.stack(150, 110, 8, 1, 10, 10, function(x, y) {
+    return Bodies.rectangle(x - 20, y, 50, 20, { collisionFilter: { group: group }, chamfer: 5});
+});
+
+Composites.chain(ropeB, 0.3, 0, -0.3, 0, { stiffness: 1, length: 0 });
 Composite.add(ropeB, Constraint.create({ 
     bodyB: ropeB.bodies[0],
     bodyA: catapult,
     pointB: { x: -10, y: 0 },
     pointA: { x: -250, y: 0 },
     stiffness: 0.5,
-    render: {type: 'line', strokeStyle: 'red'}
+}));
+
+var ropeD = Composites.stack(150, 110, 8, 1, 10, 10, function(x, y) {
+    return Bodies.rectangle(x - 20, y, 50, 20, { collisionFilter: { group: group }, chamfer: 5 });
+});
+
+Composites.chain(ropeD, 0.3, 0, -0.3, 0, { stiffness: 1, length: 0 });
+Composite.add(ropeD, Constraint.create({ 
+    bodyB: ropeD.bodies[0],
+    bodyA: catapult,
+    pointB: { x: -10, y: 0 },
+    pointA: { x: -250, y: 0 },
+    stiffness: 0.5,
+}));
+
+var partA = Bodies.rectangle(400, 110, 200, 20, { collisionFilter: { group: group }, render: { fillStyle: 'grey'},
+density: 0.05 }),
+    partB = Bodies.circle(500, 110, 10, { collisionFilter: { group: group }, render: { fillStyle: 'grey'} }),
+    partC = Bodies.circle(300, 110, 10, { collisionFilter: { group: group }, render: { fillStyle: 'grey'} });
+
+var plateB = Body.create({
+        parts: [partA, partB, partC],
+        collisionFilter: { group: group }
+});
+
+Composite.add(ropeD, Constraint.create({ 
+    bodyB: ropeD.bodies[7],
+    bodyA: plateB,
+    pointB: { x: 10, y: 0 },
+    pointA: { x: -100, y: 0 },
+    length: 0,
+    stiffness: 0.5,
+}));
+
+Composite.add(ropeB, Constraint.create({ 
+    bodyB: ropeB.bodies[7],
+    bodyA: plateB,
+    pointB: { x: 10, y: 0 },
+    pointA: { x: 100, y: 0 },
+    length: 0,
+    stiffness: 0.5,
 }));
 
 Composite.add(world, [
     catapult,
     ropeA,
+    ropeD,
     ropeB,
+    ropeC,
+    plateA,
+    plateB,
     // Bodies.rectangle(400, 600, innerWidth, 50.5, { isStatic: true, render: { fillStyle: '#060a19' },  }),
     Bodies.rectangle(400, 60, 20, 120, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: 'grey'} }),
     Constraint.create({ 
