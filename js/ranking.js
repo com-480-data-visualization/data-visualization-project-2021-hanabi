@@ -56,7 +56,6 @@ var svgContainer = svg.selectAll("g")
 .attr("width",width)
 .attr("height",heightt*0.8); 
 
-
 //console.log(index.length);
 
 for (var i = 0; i < country_num; i++) {
@@ -99,7 +98,28 @@ function mouseOut() {
             .attr("opacity", "0");
 }
 
+svgContainer.on('mousemove', function() {
+	y = d3.mouse(this)[1];
+	
+	svg.selectAll("line")
+	.remove();
 
+	svg.append('line')
+	.attr("x1",0)
+	.attr("y1",y)
+	.attr("x2",400)
+	.attr("y2",y)
+    .attr("stroke", "#aaa")
+    .attr("stroke-width", 50);
+
+    svg.append('line')
+	.attr("x1",600)
+	.attr("y1",y)
+	.attr("x2",1000)
+	.attr("y2",y)
+    .attr("stroke", "#aaa")
+    .attr("stroke-width", 50);
+});
 
 });
 

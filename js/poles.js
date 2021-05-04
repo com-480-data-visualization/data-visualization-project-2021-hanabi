@@ -42,6 +42,7 @@ RadarChart(".radarChart", data, radarChartOptions);
 var svgContainer = d3.select("body").append("svg")
 .attr("width",window.innerWidth*0.8)
 .attr("height",60); 
+
 //make the rectangle 
 var country_num = 100;
 var width = window.innerWidth*0.8 / country_num;
