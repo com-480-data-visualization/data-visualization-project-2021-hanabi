@@ -76,7 +76,7 @@ A good example of this approach can be found in [this work](http://www.noceiling
 
 **10% of the final grade**
 
-[Prototype](https://com-480-data-visualization.github.io/data-visualization-project-2021-hanabi/index.html)
+Please find our prototype at [Prototype](https://com-480-data-visualization.github.io/data-visualization-project-2021-hanabi/index.html).
 
 
 ## Milestone 3 (4th June, 5pm)
