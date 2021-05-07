@@ -19,7 +19,7 @@ var render = Render.create({
     engine: engine,
     options: {
         width: innerWidth,
-        height: innerHeight-50,
+        height: innerHeight-250,
         wireframes: false,
         background: 'white',
         showAngleIndicator: false,
@@ -185,11 +185,11 @@ var mouse = Mouse.create(render.canvas),
             }
         }
     });
-Composite.add(world, mouseConstraint);
+//Composite.add(world, mouseConstraint);
 // keep the mouse in sync with rendering
 render.mouse = mouse;
 // fit the render viewport to the scene
 Render.lookAt(render, {
     min: { x: 0, y: 0 },
-    max: { x: 800, y: 600 }
+    max: { x: 800, y: 550 }
 });

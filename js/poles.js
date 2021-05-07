@@ -6,42 +6,42 @@
 ////////////////////////////////////////////////////////////// 
 var margin = {top: 100, right: window.innerWidth/2 - 200, bottom: 100, left: window.innerWidth/2 - 200}
 var width = 400
-var height = 400
-		
+var height = 400;
+
 ////////////////////////////////////////////////////////////// 
 ////////////////////////// Data ////////////////////////////// 
 ////////////////////////////////////////////////////////////// 
-var data = [
-		  [
-			{axis:"Economic",value:22},
-			{axis:"Education",value:28},
-			{axis:"Health",value:29},
-			{axis:"Political",value:67}	
-		  ]
-		];
+let data = [
+	[
+		{axis: "Economic", value: 22},
+		{axis: "Education", value: 28},
+		{axis: "Health", value: 29},
+		{axis: "Political", value: 67}
+	]
+];
 ////////////////////////////////////////////////////////////// 
 //////////////////// Draw the Chart ////////////////////////// 
 ////////////////////////////////////////////////////////////// 
-var color = d3.scale.ordinal()
+let color = d3.scale.ordinal()
 	.range(["#04AA6D"]);
-	
-var radarChartOptions = {
-  w: width,
-  h: height,
-  margin: margin,
-  maxValue: 100,
-  levels: 5,
-  roundStrokes: true,
-  color: color
+
+let radarChartOptions = {
+	w: width,
+	h: height,
+	margin: margin,
+	maxValue: 100,
+	levels: 5,
+	roundStrokes: true,
+	color: color
 };
 
 //Call function to draw the Radar chart
 RadarChart(".radarChart", data, radarChartOptions);
 
 //make the svg container 
-var svgContainer = d3.select("body").append("svg")
-.attr("width",window.innerWidth*0.8)
-.attr("height",60); 
+let svgContainer = d3.select("body").append("svg")
+	.attr("width", window.innerWidth * 0.8)
+	.attr("height", 60);
 
 //make the rectangle 
 var country_num = 100;
@@ -81,7 +81,7 @@ d3.selectAll('rect').classed('country', true)
 })
 .on('click', function(d, i) {
 
-	var data = [
+	let data = [
 		[
 		  {axis:"Economic",value: Math.random()*100},
 		  {axis:"Education",value: Math.random()*100},

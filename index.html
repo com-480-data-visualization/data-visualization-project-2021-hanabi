@@ -18,7 +18,32 @@
         <a href="selection.html">Selection</a>
     </div>
 
-    <script src="js/balance.js"></script>	
+    <script src="js/balance.js"></script>
+
+    <div class="globalscore" >
+        <h1>Score: 60</h1>
+    </div>
+
+    <div class="range">
+        <div class="sliderValue"> <span id="slVal">2020</span></div>
+        <div class="field">
+            <div class="minval">2006</div>
+            <input type="range" min="2006" max="2020" value="2020" steps="1" id="slIn">
+            <div class="maxval">2020</div>
+        </div>
+
+    </div>
+
+    <script>
+        const sliderValue = document.getElementById("slVal");
+        const inputSlider = document.getElementById("slIn");
+        inputSlider.oninput = (()=>{
+            let value= inputSlider.value;
+            console.log(value);
+            sliderValue.textContent = value;
+            //sliderValue.style.left = (value/2) + "%";
+        })
+    </script>
 
 </body>
 </html>
