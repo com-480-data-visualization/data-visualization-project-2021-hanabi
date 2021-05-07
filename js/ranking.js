@@ -1,7 +1,7 @@
 
 //make the svg container 
 let width = 1000;
-let heightt = 1000;
+let heightt = 700;
 
 d3.csv("data/data_index.csv", function(data) {
     

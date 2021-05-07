@@ -21,7 +21,7 @@
     <script src="js/balance.js"></script>
 
     <div class="globalscore" >
-        <h1>Score: 60</h1>
+        <h1 id="scoreVal">Score: 60</h1>
     </div>
 
     <div class="range">
@@ -37,11 +37,14 @@
     <script>
         const sliderValue = document.getElementById("slVal");
         const inputSlider = document.getElementById("slIn");
+        const scoreVal = document.getElementById("scoreVal");
         inputSlider.oninput = (()=>{
             let value= inputSlider.value;
             console.log(value);
             sliderValue.textContent = value;
+
             //sliderValue.style.left = (value/2) + "%";
+
         })
     </script>
 
