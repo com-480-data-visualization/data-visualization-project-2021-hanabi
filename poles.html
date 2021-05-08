@@ -6,29 +6,47 @@
     <link rel="stylesheet" href="./css/style.css">
 
 	<!-- D3.js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- flag icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"></link>
 
 </head>
 
 <body>
 
-    <div class="topnav">
-        <a href="index.html">Home</a>
-        <a href="ranking.html">Ranking</a>
-        <a class = "active" href="poles.html">Detail</a>
-        <a href="#about">Selection</a>
+    <div style="width: 80%; margin: auto; display: block; ">
+        <div id = "vis", style="width: 10%; height: 100px; float: left; background: green;"> 
+            <button id="play-button" style="display: block; margin: auto; position: relative; top: 35%;">Play</button>
+        </div>
+        <div id = "vis2"style="width: 90%; float:left; height: 100px; background: blue;"> 
+        </div>
     </div>
 
-    <script type="text/javascript" src="js/timeline.js"></script>	
+    <script type="text/javascript" src="js/timeline.js"></script>
+    
+    <div style="width: 80%; margin: auto; display: flex; ">
+        <div id = "subindex1" style="width: 20%; float: left; background: green;"> 
+            <span class="flag-icon flag-icon-gr" style="width:100%;height:100px"></span>
+        </div>
 
-    <section id="radar_chart">
-	<div class="radarChart"></div>
-	<script src="js/radarChart.js"></script>	
-    <script type="text/javascript" src="js/poles.js"></script>
-    </section>
+        <div style="width: 60%; float: left; background: white;"> 
+            <div class="radarChart"></div>
+        </div>
 
-    <div class="center" id="country"></div>
+        <div id = "subindex3" style="width: 20%; float: left; background: yellow;"> 
+        </div>
+    </div>
+
+    <div id = "index" style="width: 80%; margin: auto; display: block; ">
+    </div>
+    
+
 
 </body>
 
+<script src="js/radarChart.js"></script>
+<script type="text/javascript" src="js/poles.js"></script>
+<script type="text/javascript" src="js/country.js"></script>
 </html>
+
