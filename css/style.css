@@ -1,3 +1,10 @@
+html, body {
+    background-color: white;
+    font-family: "HelveticaNeue", sans-serif;
+    place-items: center;
+    text-align: center;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
@@ -87,4 +94,35 @@ svg{
   stroke: #000;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
+.range{
+    padding: 0 400px 0 400px ;
+}
+
+.range .field{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    height: 100%;
+}
+.range .field .value{
+    position: absolute;
+    font-size: 12px;
+    color: #04AA6D;
+}
+.range .field input{
+    -webkit-appearance: none;
+    height: 3px;
+    width: 100%;
+    background: #04AA6D;
+    border-radius: 5px;
+}
+.range .sliderValue{
+    position: relative;
+    width: 100%;
+}
+.range .sliderValue span{
+    position: relative;
+    font-size: 18px;
 }

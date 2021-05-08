@@ -1,15 +1,16 @@
 
 //make the svg container 
-var width = 1000;
-var heightt = 1000;
+let width = 1000;
+let heightt = 700;
 
 d3.csv("data/data_index.csv", function(data) {
     
     return data;
 
 }).then(function(data){
+    let i;
     var country_rank = new Map();
-    for (var i = 0; i < data.length; i++) {
+    for (i = 0; i < data.length; i++) {
         //console.log(data[i]);
         if(data[i].Indicator == "Overall Global Gender Gap Index"){
             //console.log(data[i]);
@@ -23,42 +24,42 @@ d3.csv("data/data_index.csv", function(data) {
 //console.log(country_rank.size);
 
 //make the rectangle 
-var country_num = country_rank.size;
+    let country_num = country_rank.size;
 
-var height = heightt*0.8 / country_num;
+    let height = heightt * 0.8 / country_num;
 
 // sort map by index
 const mapSort = new Map([...country_rank.entries()].sort((a, b) => a[1] - b[1]));
 
-var index = [];
-var country = [];
+    let index = [];
+    let country = [];
 
-mapSort.forEach((value, key) => {
+    mapSort.forEach((value, key) => {
     index.push(1/value);
     country.push(key);
 });
 
 //normalize
-var mmax = 0;
-var mmin = 1000000000;
-for(var x=0; x<index.length; x++){ 
+    let mmax = 0;
+    let mmin = 1000000000;
+    for(var x=0; x<index.length; x++){
     mmax = Math.max(mmax, index[x]);
     mmin = Math.min(mmin, index[x]);
 };
 
 for(var x=0; x<index.length; x++) index[x] = 0.9*(index[x] - mmin)/( mmax-mmin) + 0.1;
 
-var svg = d3.select("svg")
-var svgContainer = svg.selectAll("g")
-.data(country)
-.enter()
-.append("g")
-.attr("width",width)
-.attr("height",heightt*0.8); 
+    let svg = d3.select("svg");
+    let svgContainer = svg.selectAll("g")
+        .data(country)
+        .enter()
+        .append("g")
+        .attr("width", width)
+        .attr("height", heightt * 0.8);
 
 //console.log(index.length);
 
-for (var i = 0; i < country_num; i++) {
+for (i = 0; i < country_num; i++) {
     
     svgContainer
     .append("rect")
