@@ -5,7 +5,12 @@
 
 d3.csv("./data/data_clean.csv", function(data){
 	
-});
+	return data;
+
+}).then(data =>{
+	console.log(data)
+
+
 
 
 ////////////////////////////////////////////////////////////// 
@@ -13,12 +18,11 @@ d3.csv("./data/data_clean.csv", function(data){
 ////////////////////////////////////////////////////////////// 
 var margin = {top: 100, right: 100, bottom: 100, left: 100}
 var width = 400
-var height = 300;
-
+var height = 400
+		
 ////////////////////////////////////////////////////////////// 
 ////////////////////////// Data ////////////////////////////// 
 ////////////////////////////////////////////////////////////// 
-<<<<<<< HEAD
 var data = [
 		  { name: "Index",
 			  axes:[
@@ -52,3 +56,7 @@ var radarChartOptions = {
 
 //Call function to draw the Radar chart
 RadarChart(".radarChart", data, radarChartOptions);
+
+})
+
+
