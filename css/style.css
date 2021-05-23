@@ -10,7 +10,7 @@ html, body {
     background-color: #333;
     overflow: hidden;
 }
-  
+
 /* Style the links inside the navigation bar */
 .topnav a {
     float: left;
@@ -97,11 +97,23 @@ svg{
 }
 
 /* slider */
+#score{
+    width: 100%;
+    position: absolute;
+    bottom: 0
+}
 .range{
-    padding: 0 400px 0 400px ;
+    display: flex;
+    bottom: 1%;
+    width: 50%;
+    margin: 1% auto;
+    margin-bottom:3%;
+    z-index: 100;
 }
 
 .range .field{
+    margin: auto;
+    width: 100%;
     position: relative;
     display: flex;
     align-items: center;
@@ -112,14 +124,16 @@ svg{
 .range .field .value{
     position: absolute;
     font-size: 12px;
-    color: #04AA6D;
+    color: #086375;
+    /*color: #04AA6D;*/
 }
 .range .field input{
     -webkit-appearance: none;
-    height: 3px;
+    height: 5px;
     width: 100%;
-    background: #04AA6D;
+    background: #086375;
     border-radius: 5px;
+    z-index: 100;
 }
 .range .sliderValue{
     position: relative;
@@ -130,4 +144,23 @@ svg{
     font-size: 18px;
 }
 
+#button_play{
+    margin-right: 1%;
+    background-size: contain;
+    background-position: center;
+}
+.freccina{
+    position: absolute;
+    width: 100%;
+    bottom: 3em;
 
+
+}
+.freccina a {
+
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
+}

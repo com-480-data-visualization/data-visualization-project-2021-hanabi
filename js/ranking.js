@@ -4,9 +4,9 @@ fetch('data/ranking.json')
 .then(res => res.json())
 .then(data=> {
    console.log(data)
-   const totalCovidDataState = data.rank
-   console.log(totalCovidDataState)
-   const groupedData = processData(totalCovidDataState);
+   const totalDataState = data.rank
+   console.log(totalDataState)
+   const groupedData = processData(totalDataState);
    console.log(groupedData); 
    dataset = groupedData;
    //plotChart(groupedData);
