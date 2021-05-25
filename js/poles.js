@@ -6,8 +6,8 @@
 let url = window.location;
 
 // current value
-let current_country1 = url.toString().split("?")[1];
-let current_country2 = url.toString().split("?")[1];
+let current_country1 = url.toString().split("?")[1].replaceAll('%20', ' ');
+let current_country2 = url.toString().split("?")[1].replaceAll('%20', ' ');
 let current_year = "2006";
 let data_full;
 let playing = false;
@@ -21,7 +21,8 @@ fetch('data/poles.json')
 
 	console.log(data)
 	add_flag(data);
-	plot_radar('Japan', 'Japan', '2006');
+	alert(current_country1)
+	plot_radar(current_country1, current_country2, '2006');
 
 })
 
