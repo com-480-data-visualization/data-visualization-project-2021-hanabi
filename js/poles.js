@@ -1,9 +1,13 @@
   
 /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
+//alert(country_name);
+
+//get couontry name
+let url = window.location;
 
 // current value
-let current_country1 = "Japan";
-let current_country2 = "Japan";
+let current_country1 = url.toString().split("?")[1];
+let current_country2 = url.toString().split("?")[1];
 let current_year = "2006";
 let data_full;
 let playing = false;

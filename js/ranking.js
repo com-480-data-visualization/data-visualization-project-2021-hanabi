@@ -1,57 +1,63 @@
 var dataset;
+let playing = false;
+
+let on_click = false;
+let current_click = -1;
 
 fetch('data/ranking.json')
 .then(res => res.json())
 .then(data=> {
-   console.log(data)
-   const totalDataState = data.rank
-   console.log(totalDataState)
-   const groupedData = processData(totalDataState);
-   console.log(groupedData); 
-   dataset = groupedData;
-   //plotChart(groupedData);
-   plotChart_year(dataset);
+    document.getElementById("button_play").style.backgroundImage = 'url("img/play_button.png")';
+    console.log(data)
+    const totalDataState = data.rank
+    console.log(totalDataState)
+    const groupedData = processData(totalDataState);
+    console.log(groupedData); 
+    dataset = groupedData;
+    //plotChart(groupedData);
+    plotChart(dataset);
 })
 
-// play-stop button
-var state = 'stop';
 
-const sliderValue = document.getElementById("slVal");
-const inputSlider = document.getElementById("slIn");
-const scoreVal = document.getElementById("scoreVal");
-inputSlider.oninput = (()=>{
+let myTimer;
+d3.select("#button_play").on("click", function() {
+	
+	if(playing == false){
+		clearInterval (myTimer);
+		myTimer = setInterval (function() {
+		var b= d3.select("#slIn");
+		var t = (+b.property("value") + 1) % (+b.property("max") + 1);
+		if (t == 0) { t = +b.property("min"); }
+		b.property("value", t);
+		changeYear(t);
+		}, 1000);
+		document.getElementById("button_play").style.backgroundImage = 'url("img/pause_button.png")';
+	}
+	else{
+		clearInterval (myTimer);
+		document.getElementById("button_play").style.backgroundImage = 'url("img/play_button.png")';
+	}
+
+	playing = !playing
+});
+
+function changeYear(year){
+    let sliderValue = document.getElementById("slVal");
+    let inputSlider = document.getElementById("slIn");
     let value= inputSlider.value;
-    //console.log(value);
-    sliderValue.textContent = value;
-    //sliderValue.style.left = (value/2) + "%";
-    if(state =='pause'||state == 'stop'){
-        //alert('hi');
-        plotChart_year(dataset);
-    }
-    //d3.selectAll("rect").remove();
-    //d3.selectAll("text").remove();
-    //plotChart(data);
+    if(!isNaN(year)) sliderValue.textContent = value;
+    else sliderValue.textContent = value;
+    plotChart(dataset)
 
-})
-
-
-function buttonPlayPress() {
-    if(state=='stop'){
-      state='play';
-      var button = d3.select("#button_play").classed('btn-success', true); 
-      button.select("i").attr('class', "fa fa-pause");  
-      plotChart(dataset);
-    }
-    else if(state=='pause'){
-      state = 'resume';
-      d3.select("#button_play i").attr('class', "fa fa-pause");  
-      plotChart(dataset);      
-    }
-    console.log("button play pressed, play was "+state);
 }
 
+var country_name = "Japan";
+
 // still
-function plotChart_year(data) {
+function plotChart(data) {
+
+    let sliderValue = document.getElementById("slVal");
+    let inputSlider = document.getElementById("slIn");
     d3.selectAll("rect").remove();
     d3.selectAll("image").remove();
     d3.selectAll("text").remove();
@@ -64,10 +70,11 @@ function plotChart_year(data) {
 
    const dateList = Array.from(data.keys())
    const fontSize = 16;
-   const rectProperties = {height: 20, padding: 10}
+   const rectProperties = {height: 4, padding: 2}
    const container = svg.append("g")
                            .classed("container", true)
 
+    
    const update = (date) =>  {
        const presentData = processEachDateData(data.get(date)[0])
        console.log(presentData);
@@ -77,7 +84,7 @@ function plotChart_year(data) {
                            .range([0, width - fontSize - 50])  
 
        const sortedRange = [...presentData].sort((a,b) => b.value1 - a.value1)
-    
+       
 
        container
            .selectAll("text")
@@ -92,34 +99,125 @@ function plotChart_year(data) {
            //.text((d,i) => d.key + " " +sortedRange.findIndex(e => e.key === d.key))
            //.transition()
            //.delay(500)
-           .attr("x", d => widthScale(d.value1)/2+ fontSize +300)
-           .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding) + fontSize) 
-
+           .attr("id", (d,i) => "text" + sortedRange.findIndex(e => e.key === d.key))
+           .attr("class", (d,i )=> d.key)
+           .attr("x", 0)
+           .attr("y", 0) 
+            .style("opacity",0)
        container
            .selectAll("rect")
            .data(presentData)
            .enter()
            .append("rect")
+           .attr("id", (d,i) => "rect" + sortedRange.findIndex(e => e.key === d.key))
            .style("fill", d=> findColor(d.value2))
-           .on("click", function() {
-            location="poles.html"
-            })
         
        container
            .selectAll("rect")
-           .attr("x", 10+300)
-           //.transition()
-           //.delay(500)
+           .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2 )
            .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
            .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
-           .attr("height", 20)
-           .on("mouseover", mouseOver)
-            .on("mouseout", mouseOut)
+           .attr("height", rectProperties.height)
+        
+        if( on_click ){
+            d3.selectAll("text").style("opacity",0);
+            let current = current_click;
+            let current_y = d3.select("#rect"+String(current)).attr('y');
+            for( let k=0 ; k<=102 ; k++ ){
+                
+                if ( k < current - 3 ){
+                    continue;
+                }
+                else if ( k >= current - 3 && k < current + 4 ){
+                    d3.select("#rect"+String(k))
+                    .attr("x", d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)
+                    .attr("y", current_y - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3)))
+                    .attr("height", 18)
+                    .attr("width", d3.select("#rect"+String(k)).attr('width') * 1.5)
 
+                    d3.select("#text" + String(k))
+                    .attr("x", (d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)+d3.select("#rect"+String(k)).attr('width') * 1.5 + 10)
+                    .attr("y", (current_y - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3))+10))
+                    .style("opacity", 1)
+                }
+                else{
+                    d3.select("#rect"+String(k))
+                    .attr("y", current_y - 3 * (rectProperties.height + rectProperties.padding) + 20 * 7 + (k-(current+4)) * (rectProperties.height + rectProperties.padding) )
+
+                    d3.select("#text" + String(k))
+                    .style("opacity", 0)
+                }
+
+            }
+        }
+
+        container
+            .selectAll("rect")
+           .on("click", function(d,i){
+            d3.selectAll("text").style("opacity",0);
+
+
+            d3.selectAll("rect")
+            .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2 )
+            .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
+            .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
+            .attr("height", rectProperties.height)
+            let current = parseInt(this.id.substring(4));
+
+            if(current >=current_click-3 && current< current_click + 4){
+                country_name = d3.select("#text" + String(current)).attr('class')
+                location="poles.html?"+country_name;
+                return;
+            }
+            current_click = current;
+            
+            on_click = true;
+            for( let k=0 ; k<=102 ; k++ ){
+                
+                if ( k < current - 3 ){
+                    continue;
+                }
+                else if ( k >= current - 3 && k < current + 4 ){
+                    d3.select("#rect"+String(k))
+                    .transition()
+                    .delay(10)
+                    .attr("x", d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)
+                    .attr("y", d3.select("#rect"+String(current)).attr('y') - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3)))
+                    .attr("height", 18)
+                    .attr("width", d3.select("#rect"+String(k)).attr('width') * 1.5)
+
+                    d3.select("#text" + String(k))
+                    .attr("x", (d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)+d3.select("#rect"+String(k)).attr('width') * 1.5 + 10)
+                    .attr("y", (d3.select("#rect"+String(current)).attr('y') - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3))+10))
+                    .style("opacity", 1)
+                }
+                else{
+                    d3.select("#rect"+String(k))
+                    .transition()
+                    .delay(10)
+                    .attr("y", d3.select("#rect"+String(current)).attr('y') - 3 * (rectProperties.height + rectProperties.padding) + 20 * 7 + (k-(current+4)) * (rectProperties.height + rectProperties.padding) )
+                    
+                    d3.select("#text" + String(k))
+                    .style("opacity", 0)
+                }
+
+            }
+           })
+            .on("mouseout",  function(d,i){
+                // d3.selectAll("rect")
+                // .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2 )
+                // .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
+                // .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
+                // .attr("height", rectProperties.height)
+            })
+        
+        /*container.selectAll('rect')
+        .on("mouseover", mouseOver)
+        .on("mouseout", mouseOut)*/
    }
 
 
-   svg
+   /*svg
    .on('mousemove', function() {
 	y = d3.mouse(this)[1];
 	
@@ -142,154 +240,14 @@ function plotChart_year(data) {
     .attr('height', 200)
 
 
-    });
+    });*/
 
 
    var year = parseInt(inputSlider.value);
     //alert(year);
-    var diff = year-2006;
-    var ccount = 0;
-    //while(flag==1){
-        
-   for (const date of dateList) {
-       //console.log(date);
-       if(ccount!=diff){
-           ccount+=1;
-
-           continue;
-       };
-
-      update(date);
-        //await new Promise(done => setTimeout(() => done(), 500));
-        //alert(year);
-      break;
-   } 
-    //}
+    update(dateList[year-2006])
 
 }
-
-
-//animation 
-async function plotChart(data) {
-    d3.selectAll("rect").remove();
-    d3.selectAll("image").remove();
-    d3.selectAll("text").remove();
-    
-   const svg = d3.select("#chart")
-   //const width = svg.node().clientWidth;
-   //const height = svg.node().clientHeight;
-   const width = 500;
-   const height = 3200;
-
-   const dateList = Array.from(data.keys())
-   const fontSize = 16;
-   const rectProperties = {height: 20, padding: 10}
-   const container = svg.append("g")
-                           .classed("container", true)
-
-   const update = (date) =>  {
-       const presentData = processEachDateData(data.get(date)[0])
-       console.log(presentData);
-
-       const widthScale = d3.scaleLinear()
-                           .domain([0, d3.max(Object.values(presentData), d => d.value1)])
-                           .range([0, width - fontSize - 50])  
-
-       const sortedRange = [...presentData].sort((a,b) => b.value1 - a.value1)
-    
-
-       container
-           .selectAll("text")
-           .data(presentData)
-           .enter()
-           .append("text")
-
-       container
-           .selectAll("text")
-           .text((d,i )=> d.key + " "+ "Rank: "+ parseInt(103-parseInt(sortedRange.findIndex(e => e.key === d.key)))+ " ("+d.value3 +")")
-           .transition()
-           .delay(500)
-           .attr("x", d => widthScale(d.value1)/2+ fontSize +300)
-           .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding) + fontSize) 
-         
-       container
-           .selectAll("rect")
-           .data(presentData)
-           .enter()
-           .append("rect")
-           .style("fill", d=> findColor(d.value2))
-           .on("click", function() {
-            location="poles.html"
-            })
-        
-       container
-           .selectAll("rect")
-           .attr("x", 10+300)
-           .transition()
-           .delay(500)
-           .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
-           .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
-           .attr("height", 20)
-
-   }
-
-
-   container
-   .on('mousemove', function() {
-	y = d3.mouse(this)[1];
-	
-
-    container.selectAll("image")
-	.remove();
-
-    container.append('image')
-    .attr('xlink:href', 'img/left.png')
-    .attr('x', 100)
-    .attr('y', y)
-    .attr('width', 200)
-    .attr('height', 200)
-
-    container.append('image')
-    .attr('xlink:href', 'img/right.png')
-    .attr('x', 650)
-    .attr('y', y)
-    .attr('width', 200)
-    .attr('height', 200)
-
-
-    });
-
-
-   var year = parseInt(inputSlider.value);
-    //alert(year);
-    var diff = year-2006;
-    var ccount = 0;
-    //while(flag==1){
-        
-   for (const date of dateList) {
-       //console.log(date);
-       if(ccount!=diff){
-           ccount+=1;
-
-           continue;
-       };
-
-      update(date);
-        await new Promise(done => setTimeout(() => done(), 500));
-        //alert(year);
-        sliderValue.textContent = String(year);
-        inputSlider.value = String(year);
-      year=year+1;
-   } 
-    //}
-    state = 'pause';
-    d3.select("#button_play i").attr('class', "fa fa-play"); 
-
-}
-
-
-
-
 
 function findColor(data){
     const continent = ['Europe', 'Asia', 'South America', 'Oceania', 'Africa', 'North America']
@@ -323,10 +281,11 @@ function processEachDateData(data) {
 }
 function mouseOver() {
     d3.select(this)
-    .style("fill", "yellow")
+    .attr("height", 20)
     
   }
 function mouseOut() {
     d3.select(this)
-    .style("fill", d=> findColor(d.value2))
+    .attr("height", 1)
+    //.style("fill", d=> findColor(d.value2))
 }

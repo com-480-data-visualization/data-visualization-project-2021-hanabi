@@ -21,24 +21,24 @@
 <body>
 
 
-    <div style="font-size:4vw; text-align: center">Gender Gap Ranking </div>
+    
+    <div class="sliderValue" style="text-align: center"> <span id="slVal" >2006</span></div>
     <div class="range">
-        <div class="sliderValue" style="text-align: center"> <span id="slVal" >2006</span></div>
         <div class="field">
             <div>
-                <button style="width: 25px; height: 25px;" type="button" id="button_play" onclick='buttonPlayPress()'>
-                    <i  class="fa fa-play"></i>
+                <button style="width: 25px; height: 25px;" type="button" id="button_play">
+                    
                 </button>
             </div>
             <div class="minval">2006</div>
-            <input type="range" min="2006" max="2020" value="2006" steps="1" id="slIn">
+            <input type="range" min="2006" max="2020" value="2006" steps="1" id="slIn" oninput="changeYear()">
             <div class="maxval">2020</div>
         </div>
         
     </div>
     
 
-    <svg id = "chart" width="1000" height="3200"></svg>
+    <svg id = "chart" width="1000" height="1000"></svg>
 
 
     <!-- Optional JavaScript -->
@@ -47,6 +47,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./js/ranking.js"></script>	
+    <script src="./js/passName.js"></script>	
     <script src="https://d3js.org/d3-array.v2.min.js"></script>
     
 
