@@ -19,10 +19,11 @@ fetch('data/poles.json')
 	data_full = data;
 	document.getElementById("button_play").style.backgroundImage = 'url("img/play_button.png")';
 
-	console.log(data)
+	console.log(data);
 	add_flag(data);
-	alert(current_country1)
 	plot_radar(current_country1, current_country2, '2006');
+	change_country1(current_country1);
+	change_country2(current_country2);
 
 })
 

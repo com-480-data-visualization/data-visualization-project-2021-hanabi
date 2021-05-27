@@ -2,7 +2,7 @@ var dataset;
 let playing = false;
 
 let on_click = false;
-let current_click = -1;
+let current_click = -100;
 
 fetch('data/ranking.json')
 .then(res => res.json())
@@ -70,7 +70,7 @@ function plotChart(data) {
 
    const dateList = Array.from(data.keys())
    const fontSize = 16;
-   const rectProperties = {height: 4, padding: 2}
+   const rectProperties = {height: 2, padding: 2}
    const container = svg.append("g")
                            .classed("container", true)
 
@@ -114,35 +114,41 @@ function plotChart(data) {
         
        container
            .selectAll("rect")
-           .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2 )
+           .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2*1.6 )
            .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
-           .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
+           .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2*1.6)
            .attr("height", rectProperties.height)
         
         if( on_click ){
             d3.selectAll("text").style("opacity",0);
             let current = current_click;
             let current_y = d3.select("#rect"+String(current)).attr('y');
+            let move = 3;
+            if( current < 3) {
+                move = current;
+            }
             for( let k=0 ; k<=102 ; k++ ){
                 
                 if ( k < current - 3 ){
                     continue;
                 }
                 else if ( k >= current - 3 && k < current + 4 ){
-                    d3.select("#rect"+String(k))
-                    .attr("x", d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)
-                    .attr("y", current_y - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3)))
-                    .attr("height", 18)
-                    .attr("width", d3.select("#rect"+String(k)).attr('width') * 1.5)
 
                     d3.select("#text" + String(k))
                     .attr("x", (d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)+d3.select("#rect"+String(k)).attr('width') * 1.5 + 10)
-                    .attr("y", (current_y - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3))+10))
+                    .attr("y", (current_y - move * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-move))+15))
                     .style("opacity", 1)
+
+                    d3.select("#rect"+String(k))
+                    .attr("x", d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)
+                    .attr("y", current_y - move * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-move)))
+                    .attr("height", 18)
+                    .attr("width", d3.select("#rect"+String(k)).attr('width') * 1.5)
+
                 }
                 else{
                     d3.select("#rect"+String(k))
-                    .attr("y", current_y - 3 * (rectProperties.height + rectProperties.padding) + 20 * 7 + (k-(current+4)) * (rectProperties.height + rectProperties.padding) )
+                    .attr("y", current_y - move * (rectProperties.height + rectProperties.padding) + 20 * (7-(3-move)) + (k-(current+4)) * (rectProperties.height + rectProperties.padding) )
 
                     d3.select("#text" + String(k))
                     .style("opacity", 0)
@@ -153,14 +159,20 @@ function plotChart(data) {
 
         container
             .selectAll("rect")
+            .on("mouseover", function(d, i){
+                d3.select(this).style("fill", "black")
+            })
+            .on("mouseout", function(d, i){
+                d3.select(this).style("fill", d=> findColor(d.value2))
+            })
            .on("click", function(d,i){
             d3.selectAll("text").style("opacity",0);
 
 
             d3.selectAll("rect")
-            .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2 )
+            .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2*1.6 )
             .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
-            .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
+            .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2*1.6)
             .attr("height", rectProperties.height)
             let current = parseInt(this.id.substring(4));
 
@@ -170,32 +182,37 @@ function plotChart(data) {
                 return;
             }
             current_click = current;
-            
             on_click = true;
+            let move = 3;
+            if( current < 3) {
+                move = current;
+            }
             for( let k=0 ; k<=102 ; k++ ){
                 
                 if ( k < current - 3 ){
                     continue;
                 }
                 else if ( k >= current - 3 && k < current + 4 ){
+
+                    d3.select("#text" + String(k))
+                    .attr("x", (d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)+d3.select("#rect"+String(k)).attr('width') * 1.5 + 10)
+                    .attr("y", (d3.select("#rect"+String(current)).attr('y') - move * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-move))+15))
+                    .style("opacity", 1)
+                    
                     d3.select("#rect"+String(k))
                     .transition()
                     .delay(10)
                     .attr("x", d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)
-                    .attr("y", d3.select("#rect"+String(current)).attr('y') - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3)))
+                    .attr("y", d3.select("#rect"+String(current)).attr('y') - move * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-move)))
                     .attr("height", 18)
                     .attr("width", d3.select("#rect"+String(k)).attr('width') * 1.5)
 
-                    d3.select("#text" + String(k))
-                    .attr("x", (d3.select("#rect"+String(k)).attr('x') - d3.select("#rect"+String(k)).attr('width') * 0.25)+d3.select("#rect"+String(k)).attr('width') * 1.5 + 10)
-                    .attr("y", (d3.select("#rect"+String(current)).attr('y') - 3 * (rectProperties.height + rectProperties.padding) + 20 * (k-(current-3))+10))
-                    .style("opacity", 1)
                 }
                 else{
                     d3.select("#rect"+String(k))
                     .transition()
                     .delay(10)
-                    .attr("y", d3.select("#rect"+String(current)).attr('y') - 3 * (rectProperties.height + rectProperties.padding) + 20 * 7 + (k-(current+4)) * (rectProperties.height + rectProperties.padding) )
+                    .attr("y", d3.select("#rect"+String(current)).attr('y') - move * (rectProperties.height + rectProperties.padding) + 20 * (7-(3-move)) + (k-(current+4)) * (rectProperties.height + rectProperties.padding) )
                     
                     d3.select("#text" + String(k))
                     .style("opacity", 0)
@@ -203,13 +220,6 @@ function plotChart(data) {
 
             }
            })
-            .on("mouseout",  function(d,i){
-                // d3.selectAll("rect")
-                // .attr("x", d => d.value1*10 <= 0? 500-0/2 : 500 - (widthScale(d.value1)/2)/2 )
-                // .attr("y", (d,i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
-                // .attr("width", d => d.value1*10 <= 0? 0 : widthScale(d.value1)/2)
-                // .attr("height", rectProperties.height)
-            })
         
         /*container.selectAll('rect')
         .on("mouseover", mouseOver)
@@ -285,7 +295,5 @@ function mouseOver() {
     
   }
 function mouseOut() {
-    d3.select(this)
-    .attr("height", 1)
-    //.style("fill", d=> findColor(d.value2))
+    d3.select(this).style("fill", d=> findColor(d.value2))
 }
