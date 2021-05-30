@@ -37,7 +37,7 @@ function add_flag(data){
 		slidesToShow: 5,
 		slidesToScroll: 1,
 		dots: '.dots',
-		draggable: false,
+		draggable: true,
 		arrows: {
 			prev: '.glider-prev',
 			next: '.glider-next',
