@@ -273,7 +273,7 @@ function plotChart(data, continent) {
 
 function findColor(data) {
     const continent = ['Europe', 'Asia', 'South America', 'Oceania', 'Africa', 'North America']
-    const color = ['#D87FD4', '#86BEEB', '#EBAE86', '#A186EB', '#5BB394', '#EB8686']
+    const color = ['#7eb6f1', '#5daf70', '#6edbec', '#939da5', '#db6d78', '#ffd34e']
     var continent_color = 'black';
 
     for (var i = 0; i < 6; i++) {
