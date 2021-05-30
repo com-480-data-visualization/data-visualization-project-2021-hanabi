@@ -1,7 +1,3 @@
-  
-/* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
-//alert(country_name);
-
 //get couontry name
 let url = window.location;
 
