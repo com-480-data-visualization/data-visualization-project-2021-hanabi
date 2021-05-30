@@ -1,10 +1,10 @@
-var dataset;
+let dataset;
 let playing = false;
 
 let on_click = false;
 let current_click = -100;
-var continent_tmp = "world";
-var country_name = "Japan";
+let continent_tmp = "world";
+let country_name = "Japan";
 
 fetch('data/ranking.json')
     .then(res => res.json())
@@ -77,8 +77,8 @@ d3.select("#button_play").on("click", function () {
     if (playing == false) {
         clearInterval(myTimer);
         myTimer = setInterval(function () {
-            var b = d3.select("#slIn");
-            var t = (+b.property("value") + 1) % (+b.property("max") + 1);
+            let b = d3.select("#slIn");
+            let t = (+b.property("value") + 1) % (+b.property("max") + 1);
             if (t == 0) { t = +b.property("min"); }
             b.property("value", t);
             changeYear(t);
@@ -266,7 +266,7 @@ function plotChart(data, continent) {
             })
     }
 
-    var year = parseInt(inputSlider.value);
+    let year = parseInt(inputSlider.value);
     update(dateList[year - 2006])
 
 }
@@ -274,9 +274,9 @@ function plotChart(data, continent) {
 function findColor(data) {
     const continent = ['Europe', 'Asia', 'South America', 'Oceania', 'Africa', 'North America']
     const color = ['#7eb6f1', '#5daf70', '#6edbec', '#939da5', '#db6d78', '#ffd34e']
-    var continent_color = 'black';
+    let continent_color = 'black';
 
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
         if (continent[i] == data) {
             continent_color = color[i];
             break;
@@ -294,8 +294,8 @@ function processEachDateData(data, continent) {
     //remove date
     delete data.date
     //normalize
-    var mmax = 2.0325203252032518;
-    var mmin = 1.1210762331838564;
+    let mmax = 2.0325203252032518;
+    let mmin = 1.1210762331838564;
 
     if (continent == "world") {
         return Object.keys(data)
