@@ -179,10 +179,10 @@ function balanceSetup(){
 
 async function getData(){
     data = {};
-    let ciao = false;
+
     for(let i=firstYear; i <= lastYear; i++) data[i] = []
 
-    return d3.csv("https://raw.githubusercontent.com/com-480-data-visualization/data-visualization-project-2021-hanabi/master/data/data_index.csv").then(
+    return d3.csv("data/data_index.csv").then(
         function(line){
             for(let el of line)
                 for(let i=firstYear; i <= lastYear; i++) data[i].push(el[i]);

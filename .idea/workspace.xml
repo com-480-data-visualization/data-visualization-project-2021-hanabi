@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9270ff16-8723-4286-8a15-9bc828e48594" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/js/bilancia.js" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/js/bilancia.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
       <workItem from="1622750477899" duration="6593000" />
       <workItem from="1622757502316" duration="65000" />
       <workItem from="1622757919137" duration="1435000" />
-      <workItem from="1622760327922" duration="291000" />
+      <workItem from="1622760327922" duration="1217000" />
     </task>
     <servers />
   </component>
