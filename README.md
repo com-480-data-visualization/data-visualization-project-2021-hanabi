@@ -78,7 +78,7 @@ A good example of this approach can be found in [this work](http://www.noceiling
 
 Milestone2 Report: [milestone2](./doc/milestone2.pdf)
 
-Please find our prototype at [Prototype](https://com-480-data-visualization.github.io/data-visualization-project-2021-hanabi/index.html).
+Please find our prototype at [Prototype](https://github.com/com-480-data-visualization/data-visualization-project-2021-hanabi/tree/master/hanabi-gendergap/gendergap/index.html).
 
 
 ## Milestone 3 (4th June, 5pm)
