@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Navigation tooltips - fullPage.js</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--font awesome icons-->
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+    <link rel="stylesheet" href="./css/glide.css">
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        .bilancia{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #tronco{
+            height: 28%;
+
+        }
+        #uguale{
+            height: 5%;
+        }
+        .piatto{
+            height: 28%;
+        }
+        #braccio{
+            height:.70%;
+
+
+        }
+        #svgBox{
+            visibility: hidden;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="./js/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.2/math.min.js"></script>
+    <script src="./js/bilancia.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+</head>
+<body onload="setBalanceScale(1.4); setup(); addEventListener('resize', bodyResize);">
+
+    <div id="fullpage">
+        <div class="section" id="section0">
+
+            <h3 class="titolo" style="position: fixed;top: 0;left: 0;" >GLOBAL</h3>
+            <h3 class="titolo" style="position: fixed;top: 0;right: 0;" >GENDER</h3>
+            <h3 class="titolo" style="position: fixed;bottom: 0;right: 0;" >INDEX</h3>
+            <h3 class="titolo" style="position: fixed;bottom: 0;left: 0;" >GAP</h3>
+
+            <main class="container">
+
+                <div class="yearSelection">
+
+
+
+
+                    <div >
+
+                        <button class="btn btn-light" style="background: white" id='button_play' onclick='buttonPlayPress()'>
+                            <i class="fa fa-play" ></i>
+                        </button>
+                        <div class=" field">
+                            <div class="minval">2006</div>
+                            <input type="range" class="form-range" min="2006" max="2020" value="2020" steps="1" id="slIn" onmouseup="changeYearScale()">
+                            <div class="maxval">2020</div>
+                        </div>
+
+                        <div class="Cyear">
+                            <div class="sliderValue"> <span id="slVal" style="color: whitesmoke">2020</span></div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            <div id=bilancia>
+                <img class="bilancia" style=" z-index: -10" src="img/braccio.svg" id="braccio" />
+                <img class="bilancia piatto" style=" z-index: -10" src="img/piattoL.svg" id="piattoL" />
+                <img class="bilancia piatto" style=" z-index: -10" src="img/piattoR.svg" id="piattoR" />
+                <img class="bilancia" style=" z-index: -10" src="img/tronco.svg"  id="tronco" />
+                <img class="bilancia" style=" z-index: -10" src="img/uguale.svg" id="uguale" />
+                <svg class="bilancia" style=" z-index: -10" id="svgBox">
+                    <circle cx="50" cy="50" r="40" stroke=3 fill=red id="cerchio" />
+                </svg>
+            </div>
+
+
+            <div class="globalscore" >
+                    <h3 id="scoreVal">Score: 60</h3>
+            </div>
+
+
+        </main>
+        </div>
+            <div class="section" id="section1">
+                <div class="flex-container">
+
+                </div>
+
+                <div class="yearSelection flex-container"> <!--class range-->
+                    <div>
+                        <div>
+                            <button type="button" class="btn btn-light"  id="button_play1" onclick="changeIcon()">
+                                <i class="fa fa-play" ></i>
+
+                            </button>
+                        </div>
+                        <div class="field">
+                            <div class="minval">2006</div>
+                            <input type="range" class="form-range" min="2006" max="2020" value="2006" steps="1" id="slIn1" oninput="changeYearRank()">
+                            <div class="maxval">2020</div>
+                        </div>
+
+                    </div>
+
+                    <div class="Cyear">
+                        <div class="sliderValue" style="text-align: center"> <span id="slVal1" >2006</span></div>
+                    </div>
+
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1 rkfil">
+                            <div class="rankfilter">
+                                <button type="button" class="btn mb-2" onclick="con_world()" style="background: white; font-weight: bold; font-size: 0.8em">World</button>
+                                <button type="button" class="btn mb-2" onclick="con_eu()" style="background: var(--violet-color);font-weight: bold; font-size: 0.8em">Europe</button>
+                                <button type="button" class="btn mb-2" onclick="con_asia()"style="background: #613950; font-weight: bold; font-size: 0.8em">Asia</button>
+                                <button type="button" class="btn mb-2" onclick="con_ocean()"style="background: #875D5E; font-weight: bold; font-size: 0.8em">Oceania</button>
+                                <button type="button" class="btn mb-2" onclick="con_afri()"style="background: #AC806C; font-weight: bold; font-size: 0.8em">Africa</button>
+                                <button type="button" class="btn mb-2" onclick="con_north()"style="background: #D2A47A; font-weight: bold; font-size: 0.8em">North America</button>
+                                <button type="button" class="btn mb-2" onclick="con_south()"style="background: var(--peach-color); font-weight: bold; font-size: 0.8em">South America</button>
+                            </div>
+                        </div>
+                        <div class="col-11">
+                            <div class="chart">
+                                <svg id="chart" width="1000" height="550"></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+        </div>
+
+        <div div class="section" id="section2">
+
+
+            <div class="yearSelection">
+                <div>
+                    <button type="button" class="btn btn-light" class="playbtn" id="button_play2" onclick="changeIcon2()">
+                        <i class="fa fa-play" ></i>
+                    </button>
+                </div>
+
+                <div class="field">
+                    <div class="minval">2006</div>
+                    <input type="range" class="form-range" min="2006" max="2020" value="2020" steps="1" id="slIn2" oninput="changeYear()">
+                    <div class="maxval">2020</div>
+                </div>
+                <div class="Cyear">
+                    <div class="sliderValue"> <span id="slVal2">2020</span></div>
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div style="width: 80%; margin: auto; display: flex; ">
+                <div id="country1" style="width: 40%; float: left; background: transparent; display:flex; flex-direction: column; justify-content: center;align-items: center;">
+
+                    <div class="flex-container" style=" align-items: center;">
+                        <div id="flag1" class="flex-flag" style="width: 3em">
+
+                        </div>
+                        <h4 id="country_name1" class="flex-cname" style="align-self: flex-end; color: #000000; "></h4>
+                        <span class="dotleft"></span>
+                    </div>
+                    <div style="display:flex; align-items: center;">
+                        <span id="education1" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/mortarboard.svg" alt="Girl in a jacket">
+                    </div>
+
+                    <div style="display:flex; align-items: center;">
+                        <span id="economy1" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/euro.svg" alt="Girl in a jacket">
+                    </div>
+                    <div style="display:flex; align-items: center;">
+                        <span id="health1" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/heart.svg" alt="Girl in a jacket">
+                    </div>
+                    <div style="display:flex; align-items: center;">
+                        <span id="politic1" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/city-hall.svg" alt="Girl in a jacket">
+                    </div>
+                </div>
+
+                <div style="width: 60%; float: left; background: transparent;">
+                    <div class="radarChart"></div>
+                </div>
+
+                <div id="country2" style="width: 40%; float: left; background: transparent;  display:flex; flex-direction: column; justify-content: center; align-items: center;">
+
+                    <div class="flex-container" style="align-items: center;">
+                        <span class="dotright"></span>
+                        <h4 id="country_name2" class="flex-cname" style="align-self: flex-end; color: #000000; "></h4>
+                        <div id="flag2" class="flex-flag" style="width: 3em">
+
+                        </div>
+                    </div>
+
+
+
+                    <div style="display:flex; align-items: center;">
+                        <span id="education2" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/mortarboard.svg" alt="Girl in a jacket">
+                    </div>
+
+                    <div style="display:flex; align-items: center;">
+                        <span id="economy2" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/euro.svg" alt="Girl in a jacket">
+                    </div>
+
+                    <div style="display:flex; align-items: center;">
+                        <span id="health2" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/heart.svg" alt="Girl in a jacket">
+                    </div>
+
+                    <div style="display:flex; align-items: center;">
+                        <span id="politic2" class="IndexRank"></span>
+                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/city-hall.svg" alt="Girl in a jacket">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="glider-contain">
+                <div id='glider' class="glider">
+                    <!--flags here-->
+                </div>
+            </div>
+
+
+        </div>
+
+    <script type="text/javascript" src="../dist/fullpage.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            sectionsColor: ['var(--sky-color)', 'var(--petroldark-color)', 'var(--petroldark-color)', 'whitesmoke', '#ccddff'],
+            anchors: ['firstPage', 'secondPage', '3rdPage'],
+            navigation:true,
+            navigationTooltips: ['Home', 'Ranking', 'Poles'],
+            showActiveTooltip: true,
+            menu: '#menu'
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3-array.v2.min.js"></script>
+        <script src="./js/radarChart.js"></script>
+        <script src="./js/ranking.js"></script>
+
+
+    <script type="text/javascript" src="./js/poles.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </div>
+</body>
+</html>

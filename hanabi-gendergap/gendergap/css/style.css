@@ -1,0 +1,184 @@
+html, body {
+
+}
+/*
+   color palette
+    */
+
+:root {
+    --petrol-color: #086375;
+    --petroldark-color: #003245;
+    --sky-color: #8DCEE2;
+    --violet-color: #3C1642;
+    --peach-color: #F7C788;
+    --rose-color: rgb(235, 177, 188);
+}
+
+/* slider */
+
+
+.form-range{
+    margin:auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    opacity: .70;
+}
+
+.form-range:hover{
+    opacity: 1;
+}
+
+.field{
+    margin:auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-self: center;
+    width: 30em;
+
+}
+.field .value{
+
+}
+.field input{
+    -webkit-appearance: none;
+
+}
+.range .sliderValue{
+    
+}
+.Cyear .sliderValue span{
+    font-size: 1.5rem;
+
+}
+
+.freccina{
+
+
+}
+
+.minval {
+    padding: 0 2rem 0 2rem;
+    font-size: 1.2rem;
+}
+
+.maxval {
+    padding: 0 2rem 0 2rem;
+    font-size: 1.2rem;
+}
+
+.yearSelection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+
+}
+
+.fp-tableCell{
+    vertical-align: baseline !important;
+}
+
+.globalscore{
+    position: absolute;
+        top: 70%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+}
+
+.titolo{
+    color: whitesmoke;
+    padding: 1rem;
+}
+
+.playbtn{
+
+    width: 2em;
+    height: 2em;
+    margin:auto;
+    background: url("img/left.png");
+
+}
+
+.rankfilter{
+
+}
+
+
+#button_play{
+    background:url("img/left.png");
+    background-size: contain;
+}
+
+#country2{background: transparent;}
+
+.flex-container{
+    display: flex;
+}
+
+.flex-flag{
+    flex:0.4;
+}
+
+.IndexRank{
+    display: flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #000000;
+}
+
+.rankfilter {
+    display: flex;
+    flex-direction: column;
+}
+.chart{
+    display:flex;
+    padding: 3.5%;
+    padding-top: 0%;
+}
+.fa{
+    color: var(--petrol-color);
+}
+.rkfil{
+    padding-top: 6em;
+
+}
+.rankfilter.btn{
+    font-weight: bold;
+}
+
+#section1{
+    background-image: url("./../img/Asset 43.svg");
+    background-size: cover;
+}
+
+.dotleft {
+    height: 25px;
+    width: 25px;
+    background-color: lightskyblue;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.dotright {
+    height: 25px;
+    width: 25px;
+    background-color: lightpink;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.dotright:hover {
+    transition: 0.6s;
+    background-color: palevioletred;
+}
+
+.dotleft:hover {
+    transition: 0.6s;
+    background-color: #2F96B4;
+}

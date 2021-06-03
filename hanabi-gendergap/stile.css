@@ -1,0 +1,11 @@
+
+.fp-right{
+    position: fixed;
+    z-index: 100;
+    margin-top: -32px;
+    top: 50%;
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    right: 17px;
+    margin-top: -73.5px;
+}

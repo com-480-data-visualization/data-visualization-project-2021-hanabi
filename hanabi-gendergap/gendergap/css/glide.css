@@ -1,0 +1,71 @@
+.glider-slide h3 {
+    color: transparent;
+    font-weight: bold;
+}
+.glider-slide:nth-child(3n) h3 {
+    color: transparent;
+}
+.glider-slide:nth-child(2n) h3 {
+    color: transparent;
+}
+
+.glider-slide{
+    background-color: transparent;
+}
+
+.glider-persp .glider-slide {
+  margin: 7px 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform:  perspective(1500px) rotateY(0deg) scale(1) translateZ(0);
+  transform-origin: 0 0;
+  transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.glider-persp .glider-slide.right-3 {
+  -webkit-transform:  perspective(1500px) rotateY(-50deg) scale(1.35) translateZ(0);
+  -webkit-transform-origin: 100% 50% 0;
+  transform:  perspective(1500px) rotateY(-50deg) scale(1.35) translateZ(0);
+  transform-origin: 0% 50% 0;
+}
+.glider-persp .glider-slide.left-3 {
+  -webkit-transform:  perspective(1500px) rotateY(50deg) scale(1.35) translateZ(0);
+  -webkit-transform-origin: 100% 50% 0;
+  transform:  perspective(1500px) rotateY(50deg) scale(1.35) translateZ(0);
+  transform-origin: 100% 50% 0;
+}
+.glider-persp .glider-slide.left-2 {
+  -webkit-transform:  perspective(1500px) rotateY(50deg) scale(1.2) translateZ(0);
+  -webkit-transform-origin: 100% 50% 0;
+  transform:  perspective(1500px) rotateY(50deg) scale(1.2) translateZ(0);
+  transform-origin: 100% 50% 0;
+}
+.glider-persp .glider-slide.right-2 {
+  -webkit-transform:  perspective(1500px) rotateY(-50deg) scale(1.2) translateZ(0);
+  -webkit-transform-origin: 0 50% 0;
+  transform:  perspective(1500px) rotateY(-50deg) scale(1.2) translateZ(0);
+  transform-origin: 0 50% 0;
+}
+.glider-persp .glider-slide.left-1 {
+  -webkit-transform:  perspective(1200px) rotateY(34deg) scale(1.1) translateZ(0);
+  -webkit-transform-origin: 100% 50% 0;
+  transform:  perspective(1200px) rotateY(34deg) scale(1.1) translateZ(0);
+  transform-origin: 100% 50% 0;
+}
+.glider-persp .glider-slide.right-1 {
+  -webkit-transform:  perspective(1200px) rotateY(-34deg) scale(1.1) translateZ(0);
+  -webkit-transform-origin: 0 50% 0;
+  transform:  perspective(1200px) rotateY(-34deg) scale(1.1) translateZ(0);
+  transform-origin: 0 50% 0;
+}
+
+.glider-persp .glider-slide {
+    margin: 2em;
+}
+
+
+.glider-slide:hover {
+  background-color: white;
+  transition: 0.6s ;
+}

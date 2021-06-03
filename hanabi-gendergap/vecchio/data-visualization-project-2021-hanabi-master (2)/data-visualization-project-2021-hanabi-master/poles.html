@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+	<!-- D3.js -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- flag icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <!-- glider.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+    <link rel="stylesheet" href="./css/glide.css">
+
+    <!-- jquery -->
+    
+    
+
+</head>
+
+<body>
+    
+    <div class="sliderValue"> <span id="slVal">2020</span></div>   
+    <div class=range>         
+        <button style="width: 25px; height: 25px;" type="button" id="button_play" onclick='buttonPlayPress()'>
+            <i  class="fa fa-play"></i>
+        </button>
+        <div class="field">
+            <div class="minval">2006</div>
+            <input type="range" min="2006" max="2020" value="2020" steps="1" id="slIn" oninput="changeYear()">
+            <div class="maxval">2020</div>
+        </div>
+
+    </div>
+    
+
+    <div style="width: 80%; margin: auto; display: flex; ">
+        <div id = "country1" style="width: 20%; float: left; background: white;"> 
+            <div id="flag1"></div>
+            <span id="country_name1" style="float:right; top: 10%; position: relative; color: #51a0d1;" ></span>
+            <br/>
+            <span id="education1" style="float:right; top: 20%; position: relative; color: #51a0d1;" ></span>
+            <br/>
+            <span id="economy1" style="float:right;  top: 30%; position: relative; color: #51a0d1;" ></span>
+            <br/>
+            <span id="health1" style="float:right;  top: 40%; position: relative; color: #51a0d1;" ></span>
+            <br/>
+            <span id="politic1" style="float:right; top: 50%; position: relative; color: #51a0d1;" ></span>
+        </div>
+
+        <div style="width: 60%; float: left; background: white;"> 
+            <div class="radarChart"></div>
+        </div>
+
+        <div id = "country2" style="width: 20%; float: left; background: white;"> 
+            <div id="flag2"></div>
+            <span id="country_name2" style="float:left; top: 10%; position: relative; color: #d66c79"></span>
+            <br/>
+            <span id="education2" style="float:left; top: 20%; position: relative; color: #d66c79 " ></span>
+            <br/>
+            <span id="economy2" style="float:left; top: 30%; position: relative; color: #d66c79" ></span>
+            <br/>
+            <span id="health2" style="float:left; top: 40%; position: relative; color: #d66c79" ></span>
+            <br/>
+            <span id="politic2" style="float:left; top: 50%; position: relative; color: #d66c79" ></span>
+            <br/>
+        </div>
+    </div>
+
+
+    <div id = "glider" class="glider glider-persp" style="width: 80%; height: 150px;" >
+    </div>
+
+</body>
+
+<script src="js/radarChart.js"></script>	
+<script type="text/javascript" src="js/poles.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</html>
+
