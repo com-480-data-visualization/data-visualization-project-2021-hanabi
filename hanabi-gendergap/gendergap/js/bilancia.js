@@ -252,11 +252,13 @@ function buttonPlayPress(state){
 }
 
 function sentence() {
-    console.log("eu");
+
     document.getElementById("expl").style.opacity = 1;
+    document.getElementById("scoreVal").style.opacity = 1;
 
 }
 function sentenceAway() {
     document.getElementById("expl").style.opacity = 0;
+    document.getElementById("scoreVal").style.opacity = 0.7;
 
 }
