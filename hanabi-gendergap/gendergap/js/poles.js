@@ -42,6 +42,7 @@ function add_flag(data) {
 
 
 
+
 	for (let key in data) {
 
 		$("[id='" + key + "']").on('click', function() {
@@ -103,7 +104,7 @@ d3.select("#button_play2").on("click", function() {
 			if (t == 0) { t = +b.property("min"); }
 			b.property("value", t);
 			changeYear(t);
-		}, 2000);
+		}, 1500);
 		//document.getElementById("button_play2").style.backgroundImage = 'url("img/pause_button.png")';
 	} else {
 		clearInterval(myTimer2);
@@ -112,14 +113,7 @@ d3.select("#button_play2").on("click", function() {
 
 	playing2 = !playing2
 });
-function changeIcon2(){
-	if(!playing){
-		document.getElementById("button_play2").innerHTML = '<i class="fa fa-pause"></i>';
-	}
-	else
-		document.getElementById("button_play2").innerHTML = '<i class="fa fa-play"></i>';
 
-}
 
 function changeYear(year) {
 	let sliderValue = document.getElementById("slVal2");
@@ -132,6 +126,15 @@ function changeYear(year) {
 	plot_radar(current_country1, current_country2, current_year)
 	change_country1(current_country1)
 	change_country2(current_country2)
+
+}
+
+function changeIcon2(){
+	if(!playing2){
+		document.getElementById("button_play2").innerHTML = '<i class="fa fa-pause"></i>';
+	}
+	else
+		document.getElementById("button_play2").innerHTML = '<i class="fa fa-play"></i>';
 
 }
 
@@ -153,7 +156,7 @@ function plot_radar(country1, country2, year) {
 	var data = [{
 		name: "Index",
 		axes: [
-			{ axis: "Ecoram", value: data_full[country1]["Global Gender Gap Economic Participation and Opportunity Subindex:Index"][year] },
+			{ axis: "Economy", value: data_full[country1]["Global Gender Gap Economic Participation and Opportunity Subindex:Index"][year] },
 			{ axis: "Education", value: data_full[country1]["Global Gender Gap Educational Attainment Subindex:Index"][year] },
 			{ axis: "Health", value: data_full[country1]["Global Gender Gap Health and Survival Subindex:Index"][year] },
 			{ axis: "Political", value: data_full[country1]["Global Gender Gap Political Empowerment subindex:Index"][year] }
@@ -162,7 +165,7 @@ function plot_radar(country1, country2, year) {
 		{
 			name: "Index2",
 			axes: [
-				{ axis: "Ecoram", value: data_full[country2]["Global Gender Gap Economic Participation and Opportunity Subindex:Index"][year] },
+				{ axis: "Economy", value: data_full[country2]["Global Gender Gap Economic Participation and Opportunity Subindex:Index"][year] },
 				{ axis: "Education", value: data_full[country2]["Global Gender Gap Educational Attainment Subindex:Index"][year] },
 				{ axis: "Health", value: data_full[country2]["Global Gender Gap Health and Survival Subindex:Index"][year] },
 				{ axis: "Political", value: data_full[country2]["Global Gender Gap Political Empowerment subindex:Index"][year] }
@@ -180,7 +183,7 @@ function plot_radar(country1, country2, year) {
 		maxValue: 1,
 		levels: 5,
 		roundStrokes: true,
-		color: d3.scaleOrdinal().range(["#8cc9f0", "#efa8b0"]),
+		color: d3.scaleOrdinal().range(['var(--violet-color)', 'var(--peach-color)']),
 		format: '.2f'
 	};
 

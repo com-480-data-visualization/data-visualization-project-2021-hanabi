@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--font awesome icons-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=Lora:wght@500&family=Roboto+Slab:wght@500&family=Vollkorn&display=swap" rel="stylesheet">
     
 
     
@@ -64,10 +67,10 @@
     <div id="fullpage">
         <div class="section" id="section0">
 
-            <h3 class="titolo" style="position: fixed;top: 0;left: 0;" >GLOBAL</h3>
-            <h3 class="titolo" style="position: fixed;top: 0;right: 0;" >GENDER</h3>
-            <h3 class="titolo" style="position: fixed;bottom: 0;right: 0;" >INDEX</h3>
-            <h3 class="titolo" style="position: fixed;bottom: 0;left: 0;" >GAP</h3>
+            <h3 class="titolo" style="position: fixed;top: 0;left: 0;" >Global</h3>
+            <h3 class="titolo" style="position: fixed;top: 0;right: 0;" >Gender</h3>
+            <h3 class="titolo" style="position: fixed;bottom: 0;right: 0;" >Index</h3>
+            <h3 class="titolo" style="position: fixed;bottom: 0;left: 0;" >Gap</h3>
 
             <main class="container">
 
@@ -83,7 +86,7 @@
                         </button>
                         <div class=" field">
                             <div class="minval">2006</div>
-                            <input type="range" class="form-range" min="2006" max="2020" value="2020" steps="1" id="slIn" onmouseup="changeYearScale()">
+                            <input type="range" class="form-range" min="2006" max="2020" value="2020" steps="1" id="slIn" oninput="changeYearScale()">
                             <div class="maxval">2020</div>
                         </div>
 
@@ -114,7 +117,9 @@
 
 
             <div class="globalscore" >
-                    <h3 id="scoreVal">Score: 60</h3>
+                    <h3>Score: </h3>
+
+                    <h3 id="scoreVal"></h3>
             </div>
 
 
@@ -142,7 +147,7 @@
                     </div>
 
                     <div class="Cyear">
-                        <div class="sliderValue" style="text-align: center"> <span id="slVal1" >2006</span></div>
+                        <div class="sliderValue" style="text-align: center ;color: whitesmoke;"> <span id="slVal1" >2006</span></div>
                     </div>
 
                 </div>
@@ -182,12 +187,12 @@
                 </div>
 
                 <div class="field">
-                    <div class="minval">2006</div>
+                    <div class="minval" style="color: var(--sky-color)">2006</div>
                     <input type="range" class="form-range" min="2006" max="2020" value="2020" steps="1" id="slIn2" oninput="changeYear()">
-                    <div class="maxval">2020</div>
+                    <div class="maxval" style="color: var(--sky-color)">2020</div>
                 </div>
                 <div class="Cyear">
-                    <div class="sliderValue"> <span id="slVal2">2020</span></div>
+                    <div class="sliderValue" style="color: whitesmoke"> <span id="slVal2">2020</span></div>
                 </div>
 
 
@@ -198,13 +203,13 @@
 
 
             <div style="width: 80%; margin: auto; display: flex; ">
-                <div id="country1" style="width: 40%; float: left; background: transparent; display:flex; flex-direction: column; justify-content: center;align-items: center;">
+                <div id="country1" style="width: 40%; float: left; background: transparent; display:flex; flex-direction: column; justify-content: center;align-items: center; ">
 
                     <div class="flex-container" style=" align-items: center;">
                         <div id="flag1" class="flex-flag" style="width: 3em">
 
                         </div>
-                        <h4 id="country_name1" class="flex-cname" style="align-self: flex-end; color: #000000; "></h4>
+                        <h4 id="country_name1" class="flex-cname" style="align-self: flex-end; color: whitesmoke "></h4>
                         <span class="dotleft"></span>
                     </div>
                     <div style="display:flex; align-items: center;">
@@ -214,15 +219,15 @@
 
                     <div style="display:flex; align-items: center;">
                         <span id="economy1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/euro.svg" alt="Girl in a jacket">
+                        <img style="width:20px !important;height: 20px; margin-left:5px; fill: whitesmoke" src="./img/euro.svg" alt="Girl in a jacket">
                     </div>
                     <div style="display:flex; align-items: center;">
                         <span id="health1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/heart.svg" alt="Girl in a jacket">
+                        <img style="width:20px !important;height: 20px; margin-left:5px; color: whitesmoke" src="./img/heart.svg" alt="Girl in a jacket">
                     </div>
-                    <div style="display:flex; align-items: center;">
+                    <div style="display:flex; align-items: center; color: whitesmoke">
                         <span id="politic1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/city-hall.svg" alt="Girl in a jacket">
+                        <img style="width:20px !important;height: 20px; margin-left:5px; color: whitesmoke" src="./img/city-hall.svg" alt="Girl in a jacket">
                     </div>
                 </div>
 
@@ -234,7 +239,7 @@
 
                     <div class="flex-container" style="align-items: center;">
                         <span class="dotright"></span>
-                        <h4 id="country_name2" class="flex-cname" style="align-self: flex-end; color: #000000; "></h4>
+                        <h4 id="country_name2" class="flex-cname" style="align-self: flex-end; color: whitesmoke;"></h4>
                         <div id="flag2" class="flex-flag" style="width: 3em">
 
                         </div>

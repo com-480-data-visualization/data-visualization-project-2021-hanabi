@@ -112,7 +112,7 @@ function centerBalance(){
 firstYear = 2006;
 lastYear = 2020;
 animationDuration = 450;
-intervallBeforeChange = 1800; // ms
+intervallBeforeChange = 1500; // ms
 cifreDopoLaVirgola = 3;
 posizionePunteggio = 1.6; // Più grande questo numero, più in basso la posizione
 
@@ -129,7 +129,7 @@ function balanceSetup(){
         y: -7,
     }
 
-    ease = "spring(1, 90, 5, 0)";
+    ease = "spring(1, 90, 6, 0)";
 
     BraccioImageWidth = document.getElementById("braccio").width;
     BraccioImageHeight = document.getElementById("braccio").height;

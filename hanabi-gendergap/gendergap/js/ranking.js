@@ -166,6 +166,7 @@ function plotChart(data, continent) {
             .style("opacity", 0.95)
 
 
+
         container
             .selectAll("rect")
             .attr("x", d => d.value1 * 10 <= 0 ? 500 - 0 / 2 : 500 - (widthScale(d.value1) / 2) / 2 * 1.6)
@@ -192,6 +193,7 @@ function plotChart(data, continent) {
                         .attr("x", (d3.select("#rect" + String(k)).attr('x') - d3.select("#rect" + String(k)).attr('width') * 0.25) + d3.select("#rect" + String(k)).attr('width') * 1.5 + 10)
                         .attr("y", (current_y - move * (rectProperties.height + rectProperties.padding) + 20 * (k - (current - move)) + 15))
                         .style("opacity", 1)
+                        
 
                     d3.select("#rect" + String(k))
                         .attr("x", d3.select("#rect" + String(k)).attr('x') - d3.select("#rect" + String(k)).attr('width') * 0.25)
@@ -331,5 +333,5 @@ function mouseOver() {
 
 }
 function mouseOut() {
-    d3.select(this).style("fill", d => findColor(d.value2))
+    d3.select(this).style("opacity", 0.7)
 }

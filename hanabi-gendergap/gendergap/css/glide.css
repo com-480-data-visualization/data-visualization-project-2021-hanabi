@@ -11,6 +11,8 @@
 
 .glider-slide{
     background-color: transparent;
+    border-radius: 10em;
+    padding-bottom: 0.2em;
 }
 
 .glider-persp .glider-slide {
@@ -62,10 +64,12 @@
 
 .glider-persp .glider-slide {
     margin: 2em;
+
 }
 
 
 .glider-slide:hover {
-  background-color: white;
+  background-color: var(--sky-color);
+
   transition: 0.6s ;
 }

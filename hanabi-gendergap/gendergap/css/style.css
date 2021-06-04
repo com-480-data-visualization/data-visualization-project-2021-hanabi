@@ -1,5 +1,5 @@
 html, body {
-
+ font-family:  'Vollkorn', serif;
 }
 /*
    color palette
@@ -50,7 +50,8 @@ html, body {
     
 }
 .Cyear .sliderValue span{
-    font-size: 1.5rem;
+    font-size: 2rem;
+    padding-bottom: 1em;
 
 }
 
@@ -90,7 +91,7 @@ html, body {
 }
 
 .titolo{
-    color: whitesmoke;
+    color: var(--petrol-color);
     padding: 1rem;
 }
 
@@ -127,7 +128,7 @@ html, body {
     display: flex;
     margin-top: 1em;
     margin-bottom: 1em;
-    color: #000000;
+    color: whitesmoke;
 }
 
 .rankfilter {
@@ -158,27 +159,37 @@ html, body {
 .dotleft {
     height: 25px;
     width: 25px;
-    background-color: lightskyblue;
+    background-color: var(--violet-color);
     border-radius: 50%;
     display: inline-block;
     margin-left: 10px;
+    opacity: 0.7;
 }
 
 .dotright {
     height: 25px;
     width: 25px;
-    background-color: lightpink;
+    background-color: var(--peach-color);
     border-radius: 50%;
     display: inline-block;
     margin-right: 10px;
+    opacity: 0.7;
 }
 
 .dotright:hover {
-    transition: 0.6s;
-    background-color: palevioletred;
+    transition: 0.3s;
+    opacity: 1;
+
 }
 
 .dotleft:hover {
-    transition: 0.6s;
-    background-color: #2F96B4;
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.btn-light{
+    opacity: 0.9;
+}
+.btn-light:hover{
+    opacity: 1;
 }
