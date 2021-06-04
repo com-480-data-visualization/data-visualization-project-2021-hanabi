@@ -9,7 +9,6 @@ let country_name = "Japan";
 fetch('data/ranking.json')
     .then(res => res.json())
     .then(data => {
-        //document.getElementById("button_play1").innerHTML = '<i class="fa fa-play"></i>';// pause icon
         console.log(data)
         const totalDataState = data.rank
         console.log(totalDataState)
@@ -90,11 +89,9 @@ d3.select("#button_play1").on("click", function () {
             b.property("value", t);
             changeYearRank(t);
         }, 1500);
-        //document.getElementById("button_play1").innerHTML = '<i class="fa fa-pause"></i>';// pause icon
     }
     else {
         clearInterval(myTimer);
-        //document.getElementById("button_play1").innerHTML = '<i class="fa fa-play"></i>';// pause icon
     }
 
     playing = !playing
@@ -139,9 +136,8 @@ function plotChart(data, continent) {
 
     let sliderValue = document.getElementById("slVal1");
     let inputSlider = document.getElementById("slIn1");
-    d3.selectAll(".rankrect").remove();
-    //d3.selectAll("image").remove();
-    d3.selectAll(".ranktext").remove();
+    d3.selectAll("rect").remove();
+    d3.selectAll("text").remove();
 
     const svg = d3.select("#chart")
     const width = 500;
@@ -175,8 +171,7 @@ function plotChart(data, continent) {
             .selectAll("text")
             .text((d, i) => d.key + " " + parseInt(continent_num(continent) - parseInt(sortedRange.findIndex(e => e.key === d.key))) + "°" + " (" + d.value3 + ")")
             .attr("id", (d, i) => "text" + sortedRange.findIndex(e => e.key === d.key))
-            .attr("class", "ranktext")
-            .attr("class", (d, i) => d.key)
+            .attr("class", (d, i) => d.key + " ranktext")
             .attr("x", 0)
             .attr("y", 0)
             .style("opacity", 0)
@@ -202,7 +197,7 @@ function plotChart(data, continent) {
             .attr("height", rectProperties.height)
 
         if (on_click) {
-            d3.selectAll(".ranktext").style("opacity", 0);
+            d3.selectAll("text").style("opacity", 0);
             let current = current_click;
             let current_y = d3.select("#rect" + String(current)).attr('y');
             let move = 3;
@@ -242,7 +237,7 @@ function plotChart(data, continent) {
         }
 
         container
-            .selectAll(".rankrect")
+            .selectAll("rect")
             .on("mouseover", function (d, i) {
                 d3.select(this).style("fill", d => findColor(d.value2)).style("opacity", 0.4)
             })
@@ -253,7 +248,7 @@ function plotChart(data, continent) {
                 d3.selectAll(".ranktext").style("opacity", 0);
 
 
-                d3.selectAll(".rankrect")
+                d3.selectAll("rect")
                     .attr("x", d => d.value1 * 10 <= 0 ? 500 - 0 / 2 : 500 - (widthScale(d.value1) / 2) / 2 * 1.6)
                     .attr("y", (d, i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
                     .attr("width", d => d.value1 * 10 <= 0 ? 0 : widthScale(d.value1) / 2 * 1.6)
@@ -261,15 +256,11 @@ function plotChart(data, continent) {
                 let current = parseInt(this.id.substring(4));
 
                 if (current >= current_click - 3 && current < current_click + 4) {
-                    //alert(current);
-                    country_name = d3.select("#text" + String(current)).attr('class');
-                    //alert(country_name);
+                    country_name = d3.select("#text" + String(current)).attr('class').slice(0, -9);
                     plot_radar(country_name, 'Italy', 2020);
                     change_country1(country_name);
                     change_country2('Italy');
                     fullpage_api.moveSectionDown();
-                    //location = "poles.html?" + country_name;
-                    //return;
                 }
                 current_click = current;
                 on_click = true;
