@@ -110,6 +110,30 @@ function changeYearRank(year) {
 
 }
 
+function continent_num(continent) {
+    if(continent == "Asia"){
+        return 26
+    }
+    else if (continent == "Europe"){
+        return 34
+    }
+    else if (continent == "Oceania"){
+        return 2
+    }
+    else if (continent == "Africa"){
+        return 20
+    }
+    else if (continent == "North America"){
+        return 11
+    }
+    else if (continent == "South America"){
+        return 10
+    }
+    else
+        return 103
+
+}
+
 // main func
 function plotChart(data, continent) {
 
@@ -149,7 +173,7 @@ function plotChart(data, continent) {
 
         container
             .selectAll("text")
-            .text((d, i) => d.key + " " + parseInt(103 - parseInt(sortedRange.findIndex(e => e.key === d.key))) + "°" + " (" + d.value3 + ")")
+            .text((d, i) => d.key + " " + parseInt(continent_num(continent) - parseInt(sortedRange.findIndex(e => e.key === d.key))) + "°" + " (" + d.value3 + ")")
             .attr("id", (d, i) => "text" + sortedRange.findIndex(e => e.key === d.key))
             .attr("class", (d, i) => d.key)
             .attr("x", 0)
