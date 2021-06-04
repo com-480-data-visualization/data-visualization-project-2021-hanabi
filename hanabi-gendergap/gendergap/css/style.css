@@ -9,7 +9,7 @@ html, body {
     --petrol-color: #086375;
     --petroldark-color: #003245;
     --sky-color: #8DCEE2;
-    --violet-color: #3C1642;
+    --violet-color: #482b4b;
     --peach-color: #F7C788;
     --rose-color: rgb(235, 177, 188);
 }
@@ -28,6 +28,20 @@ html, body {
 
 .form-range:hover{
     opacity: 1;
+}
+.form-range::-webkit-slider-thumb {
+    -
+    appearance: none;
+
+    background:var(--petrol-color); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.form-range::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background:var(--petrol-color);/* Green background */
+    cursor: pointer; /* Cursor on hover */
 }
 
 .field{
@@ -152,7 +166,7 @@ html, body {
 }
 
 #section1{
-    background-image: url("./../img/Asset 43.svg");
+    background-image: url("./../img/Asset 48.svg");
     background-size: cover;
 }
 
