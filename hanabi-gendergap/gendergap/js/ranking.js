@@ -193,7 +193,7 @@ function plotChart(data, continent) {
                         .attr("x", (d3.select("#rect" + String(k)).attr('x') - d3.select("#rect" + String(k)).attr('width') * 0.25) + d3.select("#rect" + String(k)).attr('width') * 1.5 + 10)
                         .attr("y", (current_y - move * (rectProperties.height + rectProperties.padding) + 20 * (k - (current - move)) + 15))
                         .style("opacity", 1)
-                        
+
 
                     d3.select("#rect" + String(k))
                         .attr("x", d3.select("#rect" + String(k)).attr('x') - d3.select("#rect" + String(k)).attr('width') * 0.25)
