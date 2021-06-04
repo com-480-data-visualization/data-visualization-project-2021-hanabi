@@ -89,7 +89,7 @@ Please find out visualization at [link](https://com-480-data-visualization.githu
 
 Screencast: [link](https://drive.google.com/file/d/1Zt7hA1lDuak34vHpCzMZEuGzPkByObXd/view?usp=sharing)
 
-Proccess book: [link](https://com-480-data-visualization.github.io/data-visualization-project-2021-hanabi/doc/processbook.pdf)
+Process book: [link](https://com-480-data-visualization.github.io/data-visualization-project-2021-hanabi/doc/processbook.pdf)
 
 The structure of our project:
 
