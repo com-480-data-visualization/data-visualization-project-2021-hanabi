@@ -155,6 +155,7 @@ function plotChart(data, continent) {
             .attr("x", 0)
             .attr("y", 0)
             .style("opacity", 0)
+            .style("fill", "white")
             
         container
             .selectAll("rect")
@@ -326,12 +327,4 @@ function processEachDateData(data, continent) {
             }
         })
         .map(key => ({ key, value1: 0.9 * ((1 / parseFloat(data[key][0])) - mmin) / (mmax - mmin) + 0.1, value2: data[key][1], value3: d3.format(".3f")(parseFloat(data[key][0])) }))
-}
-function mouseOver() {
-    d3.select(this)
-        .attr("height", 20)
-
-}
-function mouseOut() {
-    d3.select(this).style("opacity", 0.7)
 }
