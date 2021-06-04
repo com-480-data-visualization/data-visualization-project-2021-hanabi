@@ -14,7 +14,7 @@ html, body {
     --rose-color: rgb(235, 177, 188);
 }
 
-/* slider */
+/* slider and timeline*/
 
 
 .form-range{
@@ -69,10 +69,6 @@ html, body {
 
 }
 
-.freccina{
-
-
-}
 
 .minval {
     padding: 0 2rem 0 2rem;
@@ -119,9 +115,6 @@ html, body {
 
 }
 
-.rankfilter{
-
-}
 
 
 #button_play{
@@ -150,6 +143,7 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+/*ranking positioning*/
 .chart{
     display:flex;
     padding: 3.5%;
@@ -158,6 +152,7 @@ html, body {
 .fa{
     color: var(--petrol-color);
 }
+/*ranking btn edit*/
 .rkfil{
     padding-top: 6em;
 
@@ -165,12 +160,12 @@ html, body {
 .rankfilter.btn{
     font-weight: bold;
 }
-
+/*background image in ranking page*/
 #section1{
     background-image: url("./../img/Asset 48.svg");
     background-size: cover;
 }
-
+/*positioning and style of elements in country details page*/
 .dotleft {
     height: 25px;
     width: 25px;

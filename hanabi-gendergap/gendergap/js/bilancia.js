@@ -17,7 +17,7 @@ function bodyResize(){
 //        UPDATE            //
 //                          //
 //////////////////////////////
-
+//rescale balance elements
 function setBalanceScale(fac){
     elements = document.getElementsByClassName("bilancia");
     for(el of elements){
@@ -26,6 +26,7 @@ function setBalanceScale(fac){
         el.style.height = newScale+"px";
     }
 }
+//move balance
 function setBalancePosition(x, y){
     elements = document.getElementsByClassName("bilancia");
     for(el of elements){
@@ -33,7 +34,7 @@ function setBalancePosition(x, y){
         el.style.top = y + "px";
     }
 }
-
+//rotate the scale arm using the rotate css property
 function rotateArm(angle){
     anime({
         targets: "#braccio",
@@ -42,10 +43,11 @@ function rotateArm(angle){
         duration: animationDuration,
     })
 }
-
+//translate plate according to angle
 function setPlate(which, x, y){
     if(which == "L") t = "#piattoL";
     if(which == "R") t = "#piattoR";
+    //anime library parameters
     anime({
         targets: t,
         translateX: x,
@@ -54,7 +56,7 @@ function setPlate(which, x, y){
         duration: animationDuration,
     })
 }
-
+//updates balance position
 function setBalanceValue(x){
     // x value between [0 1];
     if(isNaN(x) || !(x === +x && x !== (x|0)) ){
@@ -67,22 +69,21 @@ function setBalanceValue(x){
     }
 
     // complete real angles
-    //thetaDeg = x * 180 - 90;
-    //thetaDeg = (2*x -1) * MAXANGLE;
-    thetaDeg = (x - 0.8) * MAXANGLE; // GGI evaluation
+    //normalization of interval 0-1(the score values range) over the MAXANGLE variable
+
+    thetaDeg = (x - 0.8) * MAXANGLE; // GGGI evaluation and compute angle
 
     thetaRad = thetaDeg * Math.PI / 180;
 
-
     rotateArm(thetaDeg);
 
-
+    //compute translation
     let newPosYl = offsetY - radius *  Math.sin(thetaRad) + littleOff.y;
     let newPosXl = offsetX - radius *  Math.cos(thetaRad);
     let newPosYr = offsetY + radius *  Math.sin(thetaRad) + littleOff.y;
     let newPosXr = offsetX + radius *  Math.cos(thetaRad);
 
-    //console.log(newPosXr);
+    //move plates
     setPlate("L", middleX.L, middleY);
     setPlate("R", middleX.R, middleY);
 
@@ -95,7 +96,7 @@ function centerBalance(){
     h = window.innerHeight;
 
     newX = w / 2 - BraccioImageWidth / 2;
-    //newY = h * 0.61 - PiattoImageHeight/ 2;
+
     newY = TroncoImageHeight;
     X = newX;
     Y = newY;
@@ -109,22 +110,24 @@ firstYear = 2006;
 lastYear = 2020;
 animationDuration = 450;
 intervallBeforeChange = 1500; // ms
-cifreDopoLaVirgola = 3;
-posizionePunteggio = 1.6; // Più grande questo numero, più in basso la posizione
+cifreDopoLaVirgola = 3; //numbers to display in the score
+posizionePunteggio = 1.6; // score position
 
+// center the weight scale and position elements correctly
+//the positioning uses css properties
 function balanceSetup(){
 
 
-    MAXANGLE = 280;
+    MAXANGLE = 280; //max scale angle
 
     X = 0;
     Y = 0;
-
+    //small adjustments to scale position
     littleOff = {
         x: -45,
         y: -7,
     }
-
+    //animation settings
     ease = "spring(1, 90, 6, 0)";
 
     BraccioImageWidth = document.getElementById("braccio").width;
@@ -150,16 +153,6 @@ function balanceSetup(){
     ty = - tronco.height * .43;
     uguale.style.transform = "translateX("+tx+"px) translateY("+ty+"px)" ;
 
-    /* svgBox = document.getElementById("svgBox");
-    svgBox.style.width = 2 * radius;
-    svgBox.style.height = 2 * radius;
-    tx = littleOff.x;
-    ty = -(radius+littleOff.y);
-    svgBox.style.transform = "translateX("+tx+"px) translateY("+ty+"px)";
-    cerchio = document.getElementById("cerchio");
-    for(el of ["cx", "cy", "r"])
-        cerchio.setAttribute(el, radius);
-    path = anime.path("#cerchio"); */
 
     centerBalance();
 }
@@ -172,7 +165,7 @@ function balanceSetup(){
 //                          //
 //                          //
 //////////////////////////////
-
+//get data and average over all countries
 async function getData(){
     data = {};
 
@@ -191,7 +184,7 @@ async function getData(){
             }
     );
 }
-
+//change score and scale according to year
 function changeYearScale(year){
     let sliderValue = document.getElementById("slVal");
     let inputSlider = document.getElementById("slIn");
@@ -203,7 +196,7 @@ function changeYearScale(year){
     scoreVal.textContent = data[value].toFixed(cifreDopoLaVirgola);
     setBalanceValue(data[value]);
 }
-
+//anime parameters
 balanceAnimation = {
     playing: false,
     state: undefined,
@@ -228,6 +221,7 @@ balanceAnimation = {
         document.getElementById("slIn").value = balanceAnimation.state;
     }
 }
+//updates play button and starts animation
 function buttonPlayPress(state){
 
 
@@ -246,7 +240,7 @@ function buttonPlayPress(state){
 
     }
 }
-
+//hover function for visualizing description of the score
 function sentence() {
 
     document.getElementById("expl").style.opacity = 1;
