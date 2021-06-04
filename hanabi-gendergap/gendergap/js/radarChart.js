@@ -1,9 +1,4 @@
-/////////////////////////////////////////////////////////
-/////////////// The Radar Chart Function ////////////////
-/// mthh - 2017 /////////////////////////////////////////
-// Inspired by the code of alangrafu and Nadieh Bremer //
-// (VisualCinnamon.com) and modified for d3 v4 //////////
-/////////////////////////////////////////////////////////
+// Edit from mthh - 2017: The Radar Chart Function
 
 const max = Math.max;
 const sin = Math.sin;
@@ -145,7 +140,7 @@ const RadarChart = function RadarChart(parent_selector, data, options) {
 	   .attr("y", d => -d * radius / cfg.levels)
 	   .attr("dy", "0.4em")
 	   .style("font-size", "10px")
-	   .attr("fill", "#737373")
+	   .attr("fill", "white")
 	   .text(d => Format(maxValue * d / cfg.levels) + cfg.unit);
 
 	/////////////////////////////////////////////////////////
@@ -162,8 +157,8 @@ const RadarChart = function RadarChart(parent_selector, data, options) {
 	axis.append("line")
 		.attr("x1", 0)
 		.attr("y1", 0)
-		.attr("x2", (d, i) => rScale(maxValue *1.1) * cos(angleSlice * i - HALF_PI))
-		.attr("y2", (d, i) => rScale(maxValue* 1.1) * sin(angleSlice * i - HALF_PI))
+		.attr("x2", (d, i) => rScale(maxValue) * cos(angleSlice * i - HALF_PI))
+		.attr("y2", (d, i) => rScale(maxValue) * sin(angleSlice * i - HALF_PI))
 		.attr("class", "line")
 		.style("stroke", "white")
 		.style("stroke-width", "2px");
@@ -172,12 +167,19 @@ const RadarChart = function RadarChart(parent_selector, data, options) {
 	axis.append("text")
 		.attr("class", "legend")
 		.style("font-size", "11px")
+<<<<<<< HEAD
+		.style("color", "whitesmoke")
+=======
+		.style("fill", "white")
+>>>>>>> 043f93b7b5259d2d0d0a0d606e1ec2048d72c4ee
 		.attr("text-anchor", "middle")
 		.attr("dy", "0.35em")
 		.attr("x", (d,i) => rScale(maxValue * cfg.labelFactor) * cos(angleSlice * i - HALF_PI))
 		.attr("y", (d,i) => rScale(maxValue * cfg.labelFactor) * sin(angleSlice * i - HALF_PI))
 		.text(d => d)
 		.call(wrap, cfg.wrapWidth);
+
+
 
 	/////////////////////////////////////////////////////////
 	///////////// Draw the radar chart blobs ////////////////

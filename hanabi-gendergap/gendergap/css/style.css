@@ -193,3 +193,9 @@ html, body {
 .btn-light:hover{
     opacity: 1;
 }
+
+.indicon{
+    width:1em !important;
+    height: 1em;
+    margin-left:1em;
+}

@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9270ff16-8723-4286-8a15-9bc828e48594" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/css/stile.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/city-hall.svg" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/city-hall.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/euro.svg" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/euro.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/heart.svg" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/heart.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/mortarboard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/img/mortarboard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/js/bilancia.js" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/js/bilancia.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hanabi-gendergap/gendergap/js/radarChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/hanabi-gendergap/gendergap/js/radarChart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +86,7 @@
       <workItem from="1622750477899" duration="6593000" />
       <workItem from="1622757502316" duration="65000" />
       <workItem from="1622757919137" duration="1435000" />
-      <workItem from="1622760327922" duration="6048000" />
+      <workItem from="1622760327922" duration="10500000" />
     </task>
     <servers />
   </component>

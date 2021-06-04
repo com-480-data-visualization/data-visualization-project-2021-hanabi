@@ -94,10 +94,6 @@
                             <div class="sliderValue"> <span id="slVal" style="color: whitesmoke">2020</span></div>
                         </div>
 
-
-
-
-
                     </div>
 
 
@@ -116,10 +112,10 @@
             </div>
 
 
-            <div class="globalscore" >
+            <div onmouseover="sentence()", onmouseout="sentenceAway()" class="globalscore" >
                     <h3>Score: </h3>
-
                     <h3 id="scoreVal"></h3>
+                    <p id = "expl" style="opacity: 0;">The Global Gender Gap Index is an index designed to measure gender equality</p>
             </div>
 
 
@@ -214,20 +210,20 @@
                     </div>
                     <div style="display:flex; align-items: center;">
                         <span id="education1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/mortarboard.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em;" src="./img/mortarboard.svg" alt="Girl in a jacket">
                     </div>
 
                     <div style="display:flex; align-items: center;">
                         <span id="economy1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px; fill: whitesmoke" src="./img/euro.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em; " src="./img/euro.svg" alt="Girl in a jacket">
                     </div>
                     <div style="display:flex; align-items: center;">
                         <span id="health1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px; color: whitesmoke" src="./img/heart.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em; " src="./img/heart.svg" alt="Girl in a jacket">
                     </div>
                     <div style="display:flex; align-items: center; color: whitesmoke">
                         <span id="politic1" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px; color: whitesmoke" src="./img/city-hall.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em; " src="./img/city-hall.svg" alt="Girl in a jacket">
                     </div>
                 </div>
 
@@ -249,22 +245,22 @@
 
                     <div style="display:flex; align-items: center;">
                         <span id="education2" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/mortarboard.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em;" src="./img/mortarboard.svg" alt="Girl in a jacket">
                     </div>
 
                     <div style="display:flex; align-items: center;">
                         <span id="economy2" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/euro.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em;" src="./img/euro.svg" alt="Girl in a jacket">
                     </div>
 
                     <div style="display:flex; align-items: center;">
                         <span id="health2" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/heart.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em;" src="./img/heart.svg" alt="Girl in a jacket">
                     </div>
 
                     <div style="display:flex; align-items: center;">
                         <span id="politic2" class="IndexRank"></span>
-                        <img style="width:20px !important;height: 20px; margin-left:5px;" src="./img/city-hall.svg" alt="Girl in a jacket">
+                        <img style="width:2em !important;height: 2em; margin-left:1em;" src="./img/city-hall.svg" alt="Girl in a jacket">
                     </div>
                 </div>
             </div>
@@ -283,7 +279,7 @@
     <script type="text/javascript" src="examples.js"></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
-            sectionsColor: ['var(--sky-color)', 'var(--petroldark-color)', 'var(--petroldark-color)', 'whitesmoke', '#ccddff'],
+            sectionsColor: ['var(--sky-color)', 'var(--petroldark-color)', 'var(--petroldark-color)'],
             anchors: ['firstPage', 'secondPage', '3rdPage'],
             navigation:true,
             navigationTooltips: ['Home', 'Ranking', 'Poles'],

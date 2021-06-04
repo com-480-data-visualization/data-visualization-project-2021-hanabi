@@ -85,6 +85,8 @@ Please find our prototype at [Prototype](https://github.com/com-480-data-visuali
 
 **80% of the final grade**
 
+Please find out website at [Website](https://com-480-data-visualization.github.io/data-visualization-project-2021-hanabi/hanabi-gendergap/gendergap/index.html).
+
 
 ## Late policy
 
