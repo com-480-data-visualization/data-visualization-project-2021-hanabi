@@ -89,9 +89,9 @@ Please find out website at [Website](https://com-480-data-visualization.github.i
 
 The structure of our project:
 
- * `notebooks/`: directory contains our data analysis.
- * `doc/`: directory contains each of the milestone reports.
- * `hanabi-gendergap/`: directory contains all the files used to build our website. The main implementation are in the folder`gendergap/`, which you can find the main visualization(`js/`), the main style(`css/`, `img/`) and `index.html`
+ * `notebooks/`: Directory contains our data analysis.
+ * `doc/`: Directory contains each of the milestone reports.
+ * `hanabi-gendergap/`: Directory contains all the files used to build our website. The main implementation are in the folder`gendergap/`, which you can find the main visualization(`js/`), the main style(`css/`, `img/`) and `index.html`
 
 ## Late policy
 
