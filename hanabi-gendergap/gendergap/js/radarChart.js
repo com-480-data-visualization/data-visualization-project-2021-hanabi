@@ -167,19 +167,13 @@ const RadarChart = function RadarChart(parent_selector, data, options) {
 	axis.append("text")
 		.attr("class", "legend")
 		.style("font-size", "11px")
-<<<<<<< HEAD
-		.style("color", "whitesmoke")
-=======
 		.style("fill", "white")
->>>>>>> 043f93b7b5259d2d0d0a0d606e1ec2048d72c4ee
 		.attr("text-anchor", "middle")
 		.attr("dy", "0.35em")
 		.attr("x", (d,i) => rScale(maxValue * cfg.labelFactor) * cos(angleSlice * i - HALF_PI))
 		.attr("y", (d,i) => rScale(maxValue * cfg.labelFactor) * sin(angleSlice * i - HALF_PI))
 		.text(d => d)
 		.call(wrap, cfg.wrapWidth);
-
-
 
 	/////////////////////////////////////////////////////////
 	///////////// Draw the radar chart blobs ////////////////
