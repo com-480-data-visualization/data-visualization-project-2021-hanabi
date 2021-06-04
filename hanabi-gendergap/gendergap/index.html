@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/glide.css">
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!--weight scale components, used for rescaling and animation -->
     <style>
         .bilancia{
             position: absolute;
@@ -65,7 +66,7 @@
 <body onload="setBalanceScale(1.4); setup(); addEventListener('resize', bodyResize);">
 
     <div id="fullpage">
-        <div class="section" id="section0">
+        <div class="section" id="section0"> <!-- homepage-->
 
             <h3 class="titolo" style="position: fixed;top: 0;left: 0;" >Global</h3>
             <p  style="position: fixed;top: 4em;left: 0; width: 30em ; font-size: 1em; text-align: left; padding: 1.5em;">The Global Gender Gap Index is an indicator of gender equality measured
@@ -77,12 +78,7 @@
             <h3 class="titolo" style="position: fixed;bottom: 0;left: 0;" >Gap</h3>
 
             <main class="container">
-
                 <div class="yearSelection">
-
-
-
-
                     <div >
 
                         <button class="btn btn-light" style="background: white" id='button_play' onclick='buttonPlayPress()'>
@@ -276,7 +272,7 @@
                 </div>
             </div>
 
-            
+
 
 
             <div class="glider-contain">

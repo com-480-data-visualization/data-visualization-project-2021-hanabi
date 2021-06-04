@@ -7,11 +7,7 @@ async function setup(){
 
 function bodyResize(){
     balanceSetup();
-    /*let w = window.innerWidth;
-    let h = window.innerHeight;
-    let main = document.getElementsByTagName("main")[0];
-    main.style.width = w+"px";
-    main.style.height = h+"px";*/
+
 }
 
 //////////////////////////////
