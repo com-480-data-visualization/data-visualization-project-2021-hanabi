@@ -136,8 +136,8 @@ function plotChart(data, continent) {
 
     let sliderValue = document.getElementById("slVal1");
     let inputSlider = document.getElementById("slIn1");
-    d3.selectAll("rect").remove();
-    d3.selectAll("text").remove();
+    d3.selectAll(".rankrect").remove();
+    d3.selectAll(".ranktext").remove();
 
     const svg = d3.select("#chart")
     const width = 500;
@@ -197,7 +197,7 @@ function plotChart(data, continent) {
             .attr("height", rectProperties.height)
 
         if (on_click) {
-            d3.selectAll("text").style("opacity", 0);
+            d3.selectAll(".ranktext").style("opacity", 0);
             let current = current_click;
             let current_y = d3.select("#rect" + String(current)).attr('y');
             let move = 3;
