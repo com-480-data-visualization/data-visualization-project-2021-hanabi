@@ -139,9 +139,9 @@ function plotChart(data, continent) {
 
     let sliderValue = document.getElementById("slVal1");
     let inputSlider = document.getElementById("slIn1");
-    d3.selectAll(".rankrect").remove();
+    d3.selectAll("rect").remove();
     //d3.selectAll("image").remove();
-    d3.selectAll(".ranktext").remove();
+    d3.selectAll("text").remove();
 
     const svg = d3.select("#chart")
     const width = 500;
@@ -178,7 +178,7 @@ function plotChart(data, continent) {
             .attr("class", (d, i) => d.key)
             .attr("x", 0)
             .attr("y", 0)
-            .attr("class", "ranktext")
+            //.attr("class", "ranktext")
             .style("opacity", 0)
             .style("fill", "white")
             
@@ -187,7 +187,7 @@ function plotChart(data, continent) {
             .data(presentData)
             .enter()
             .append("rect")
-            .attr("class", "rankrect")
+            //.attr("class", "rankrect")
             .attr("id", (d, i) => "rect" + sortedRange.findIndex(e => e.key === d.key))
             .style("fill", d => findColor(d.value2))
             .style("opacity", 0.95)
@@ -250,10 +250,10 @@ function plotChart(data, continent) {
                 d3.select(this).style("fill", d => findColor(d.value2)).style("opacity", 0.95)
             })
             .on("click", function (d, i) {
-                d3.selectAll(".ranktext").style("opacity", 0);
+                d3.selectAll("text").style("opacity", 0);
 
 
-                d3.selectAll(".rankrect")
+                d3.selectAll("rect")
                     .attr("x", d => d.value1 * 10 <= 0 ? 500 - 0 / 2 : 500 - (widthScale(d.value1) / 2) / 2 * 1.6)
                     .attr("y", (d, i) => sortedRange.findIndex(e => e.key === d.key) * (rectProperties.height + rectProperties.padding))
                     .attr("width", d => d.value1 * 10 <= 0 ? 0 : widthScale(d.value1) / 2 * 1.6)
